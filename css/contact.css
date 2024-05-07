@@ -1,0 +1,41 @@
+#contact {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1%;
+  margin-top: 2%;
+  padding: 15px 4px;
+  color: #c8b8b8;
+  font-size: 5rem;
+}
+p a {
+  color: inherit;
+}
+
+#links {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin:auto;
+  margin-top: 10vh;
+  width: 40%;
+  row-gap: 3rem;
+  justify-content: center;
+}
+
+#links a img {
+  max-height: 5rem;
+  max-width: 80%;
+}
+#photo {
+  margin-top:8vh;
+  margin-left: auto;
+  margin-right:auto;
+  border-radius: 50%;
+  width: 20rem;
+  max-width: 80vw;
+  height: 20rem;
+  max-height:80vw;
+  overflow: hidden;
+}
+#photo img{
+  transform: translate(-38.5%,-30%);
+}

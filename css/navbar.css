@@ -1,0 +1,52 @@
+#navbar {
+  margin: 0;
+  display: block;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  left:0;
+  z-index: 20;
+}
+
+#selected {
+  color: white;
+}
+
+#navbar-content {
+  display: flex;
+  justify-content: right;
+  height: auto;
+}
+
+#navbar-content a{
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  color: #C6A1CF;
+  width: auto;
+  padding: 20px;
+}
+
+#navbar a:hover {
+  color: white;
+}
+
+@media screen and (max-width: 632px) {
+  #navbar a span{
+    display: none;
+  }
+  #navbar-content a{
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    color: #C6A1CF;
+    width: auto;
+    padding: 8px;
+  }
+  #navbar-content {
+    display: flex;
+    justify-content: center;
+    height: auto;
+  }
+}

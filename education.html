@@ -1,105 +1,62 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-    <head>
-        <script src="js/education.js"></script>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" href="css/navbar.css">
-        <link rel="stylesheet" type="text/css" href="css/education.css">
-        <link rel="stylesheet" type="text/css" href="css/master.css">
-        <title>Lewis Hepple</title>
-
-    </head>
-    <body>
-        <nav id="navbar">
-            <article id="navbar-content">
-                <a href="/index.html">Home</a>
-                <a href="/about.html">About <span>Me</span></a>
-                <a href="/work.html">Work<span> Experience</span></a>
-                <a href="/skills.html">Skills<span> + Interests</span></a>
-                <a href="/education.html" class="selectedPage">Education</a>
-                <a href="/contact.html">Contact<span> Me</span></a>
-            </article>
-        </nav>
-        <main>
-            <section class="education-info-container">
-                <article class='education-info'>
-                    <img id='uq' src="images/UQ.png"/>
-                        <entity id='uq-info' class='content'>
-                            <ul class="left-list">
-                                <li class="unsigned-list">
-                                    Bachelor of Computer Science
-                                </li>
-                                <li class="unsigned-list">
-                                    GPA: 6.75                      
-                                </li>
-                                <li class="unsigned-list">
-                                    Graduation: Dec 2024                          
-                                </li>
-                            </ul>
-                            <h3>
-                            Favourite Courses:
-                            </h3>
-                            <ul>
-                                <li class="course">
-                                    CSSE2310      - Computer Systems Principles and Programming
-                                </li>
-                                <li class="course">
-                                    COMP3301   - Operating Systems Architecture
-                                </li>
-                                <li class="course">
-                                    COMP3506   - Algorithms and Data Structures                             
-                                </li>
-                                <li class="course">
-                                    COMP4403   - Compilers and Interpreters
-                                </li>
-                                <li class="course">
-                                    COMP3400   - Functional and Logic Programming
-                                </li>
-                            </ul>
-                        </entity>
-                    </article>
-
-                <article class='education-info'>
-                <img id='EDX' class="EDX" src="images/edx.jpg"/>
-                <entity id='EDX-info' class='content'> 
-                    <h3>
-                        I have completed courses through the online platform EDX to supplement my learning:
-                    </h3>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/masternew.css">
+    <title>Lewis Hepple</title>
+</head>
+<body>
+    <nav class="navbar sticky-top full-width">
+        <div class="flex-row center-content navbar-content" id="navbar-content">
+            <a href="/index.html" class="nav-link">Home</a>
+            <a href="/about.html" class="nav-link">About <span class="hide-responsive">Me</span></a>
+            <a href="/work.html" class="nav-link">Work<span class="hide-responsive"> Experience</span></a>
+            <a href="/skills.html" class="nav-link">Skills<span class="hide-responsive"> + Interests</span></a>
+            <a href="/education.html" class="nav-link selected-page">Education</a>
+            <a href="/contact.html" class="nav-link">Contact<span class="hide-responsive"> Me</span></a>
+        </div>
+    </nav>
+    <main class="main-content container">
+        <section>
+            <article class='education-info four-col-grid'>
+                <img src="images/UQ.png" class="medium-image"/>
+                <div class='content'>
+                    <ul class="left-list">
+                        <li class="unsigned-list">Bachelor of Computer Science</li>
+                        <li class="unsigned-list">GPA: 6.75</li>
+                        <li class="unsigned-list">Graduation: Dec 2024</li>
+                    </ul>
+                    <h3>Favourite Courses:</h3>
                     <ul>
-                        <li class="course">CS50x – Harvard’s Introduction to Software Engineering </li>
-                        <li class="course">
-                            CS50W – Harvard’s Computer Science for Web Programming
-                        </li>
-                        <li class="course">
-                            CS50AI – Harvard’s Computer Science for Artificial Intelligence
-                        </li>
-                        <li class="course">
-                            GD50x – Harvard’s Game Development with Lua and Love2d
-                        </li>
-                        <li class="course">
-                            PH526x – Harvard’s Using Python for Research with Numpy and Pandas 
-                        </li>
-                        <li class="course">
-                            UT.5.05x – MIT’s Linear Algebra – Foundations to Frontiers 
-                        </li>
-                        <li class="course">
-                            CPP.PRG.1 – NYU’s Introduction to Programming in C++
-                        </li>
-                        <li class="course">
-                            CPP.PRG.2 – NYU’s Advanced Programming in C++
-                        </li>
-                        <li class="course">
-                            CPP.PRG.3 – NYU’s Introduction to Data Structures
-                        </li>
-                        <li class="course">
-                            CPP.PRG.4 – NYU’s Advanced Data Structures
-                        </li>
-                </ul>
-                </entity>
-                </article>
-            </section>
-        </main>
-        
-    </body>
+                        <li class="course">CSSE2310 - Computer Systems Principles and Programming</li>
+                        <li class="course">COMP3301 - Operating Systems Architecture</li>
+                        <li class="course">COMP3506 - Algorithms and Data Structures</li>
+                        <li class="course">COMP4403 - Compilers and Interpreters</li>
+                        <li class="course">COMP3400 - Functional and Logic Programming</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class='education-info four-col-grid'>
+                <img src="images/edx.jpg" class="medium-image"/>
+                <div class='content'> 
+                    <h3>I have completed courses through the online platform EDX to supplement my learning:</h3>
+                    <ul>
+                        <li class="course">CS50x – Harvard’s Introduction to Software Engineering</li>
+                        <li class="course">CS50W – Harvard’s Computer Science for Web Programming</li>
+                        <li class="course">CS50AI – Harvard’s Computer Science for Artificial Intelligence</li>
+                        <li class="course">GD50x – Harvard’s Game Development with Lua and Love2d</li>
+                        <li class="course">PH526x – Harvard’s Using Python for Research with Numpy and Pandas</li>
+                        <li class="course">UT.5.05x – MIT’s Linear Algebra – Foundations to Frontiers</li>
+                        <li class="course">CPP.PRG.1 – NYU’s Introduction to Programming in C++</li>
+                        <li class="course">CPP.PRG.2 – NYU’s Advanced Programming in C++</li>
+                        <li class="course">CPP.PRG.3 – NYU’s Introduction to Data Structures</li>
+                        <li class="course">CPP.PRG.4 – NYU’s Advanced Data Structures</li>
+                    </ul>
+                </div>
+            </article>
+        </section>
+    </main>
+</body>
 </html>

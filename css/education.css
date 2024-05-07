@@ -1,128 +1,109 @@
-#education {
-  margin: auto;
-  margin-bottom: 1%;
-  margin-top: 2%;
-  padding: 15px 4px;
+/* Reset and global styles */
+body {
+  background-image: linear-gradient(#000 1%, #1e0f1d 60%, #000 100%);
+  margin: 0;
+  font-family: 'Garamond', serif;
   color: #c8b8b8;
-  font-size: min(1.5vh, 1.5vw);
+}
+
+/* Typography */
+.text-large {
+  font-size: 5rem;
+}
+
+.text-normal {
+  font-size: max(1.3vw, 15px);
+}
+
+/* Layout */
+.container {
+  margin: auto;
+  max-width: 70%;
+}
+
+.center-content {
+  display: flex;
+  justify-content: center;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.flex-row {
+  display: flex;
+}
+
+.sticky-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+}
+
+/* Navigation bar */
+.navbar {
+  overflow: hidden;
+}
+
+.nav-link {
+  text-decoration: none;
+  text-align: center;
+  color: #C6A1CF;
+  padding: 20px;
+}
+
+.nav-link:hover {
+  color: white;
 }
 
 
-.left-list {
-  padding-left: 0;
+@media screen and (min-width: 632px) {
+  .navbar-content {
+      justify-content: flex-end; 
+  }
+  .hide-responsive {
+      display: none;
+  }
+
+  .nav-link {
+      padding: 8px;
+  }
+
+  .navbar-content {
+      justify-content: center; /* Center links */
+  }
 }
 
-.unsigned-list {
-  list-style: none;
+/* Specific components */
+.profile-image {
+  border-radius: 3%;
+  overflow: hidden;
+  width: max(50vh, 60vw);
+  max-width: 80vw;
 }
 
-.course {
-  list-style: circle;
-}
-
-.reverse-image {
-  grid-column: 3;
-  grid-row: 1;
-}
-
-
-.education-info-container {
-  margin-top: 15vh;
-  min-height: 85vh;
-  
-}
-
-.education-info {
+.gallery {
+  --d: 25s; /* Animation duration */
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-column-gap: 2rem;
-  grid-row-gap: 2rem;
-  row-gap: 2rem;
-  margin-left: 5vw;
-  margin-right: 5vw;
-  margin-top: min(5vh, 5vw);
-  align-items: center;
-  color: #c8b8b8;
-  justify-items: center;
-
+  grid-template-areas: "image";
+  margin: 22.5vh auto;
+  width: 55vh;
 }
 
-.education-info img {
-  margin: auto;
-  width: max(20vw, 35vh);
-  max-width: 40vw;
-  border-radius: 5%;
-  opacity:0;
-  transition: all 1.5s;
+.gallery img {
+  grid-area: image;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border: 10px solid #c6a1cf;
+  box-shadow: 0 0 4px #0007;
+  z-index: 2;
+  animation: slide var(--d) infinite, z-order var(--d) infinite steps(1);
 }
 
-.content-reversed {
-  display: block;
-  width: auto;
-  grid-column: 1 / 3;
-  font-size: max(1.25vh, 1vw);
-  text-align: right;
-  perspective: 1000px;
-  transform-style: preserve-3d;
-  opacity:0;
-  transition: all 1.5s;
-  transform: rotateX(-90deg);
-}
-
-.content {
-  display: block;
-  width: auto;
-  grid-column: 2 / 4;
-  font-size: max(1.25vh, 1vw);
-  text-align: left;
-  perspective: 1000px;
-  transform-style: preserve-3d;
-  opacity:0;
-  transition: all 1.5s;
-  transform: rotateX(-90deg);
-}
-
-.work-content {
-  font-size: max(1.5vh, 1.25vw);
-}
-
-
-@media screen and (max-width: 1000px) {
-  .education-info-container {
-    margin-top: 5vh;
-  }
-
-  .education-info {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-column-gap: 2rem;
-    grid-row-gap: 1rem; 
-    row-gap: 1rem;
-    margin-left: 2vw;
-    margin-right: 2vw;
-    margin-top: 6vh;
-    align-items: center;
-    justify-items: center;
-  }
-  .education-info img {
-    margin: auto;
-    width:35vw;
-    min-width: 200px;
-  }
-  .content {
-    display: block;
-    width: auto;
-    grid-column: 1;
-    font-size: 0.8rem;
-    text-align: center;
-  }
-  .reverse-image {
-    grid-column: auto;
-    grid-row: auto;
-  }
-
-  .course {
-    list-style: none;
-  }
-
+.main-content {
+  padding-top: 60px; /* Adjust based on the height of your navbar */
 }

@@ -1,68 +1,46 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-    <head>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" href="css/navbar.css">
-        <link rel="stylesheet" type="text/css" href="css/about.css">
-        <link rel="stylesheet" type="text/css" href="css/master.css">
-        <title>Lewis Hepple</title>
-
-    </head>
-    <body>
-        <nav id="navbar">
-            <article id="navbar-content">
-                <a href="/index.html">Home</a>
-                <a href="/about.html" class="selectedPage">About <span>Me</span></a>
-                <a href="/work.html">Work<span> Experience</span></a>
-                <a href="/skills.html">Skills<span> + Interests</span></a>
-                <a href="/education.html">Education</a>
-                <a href="/contact.html">Contact<span> Me</span></a>
-            </article>
-        </nav>
-        <main> 
-            <section id='about-info-big'>
-                <p>
-                    Thank you for taking the time to read through my website. 
-                    My name is Lewis, I am a 25 year old Computer Science Student currently working as a part time Software Development Consultant.
-                </p>
-                <p>
-                    My professional experience includes my current role as an undergraduate software consultant engineer at
-                    Integral where I am exposed to a variety of different internal and external problem-solving tasks. 
-                    An internship at Amazon, Brisbane, where I engaged in full-stack, end-to-end development and an internship at TallyStone where I worked in back-end development.
-                </p>
-                <p>
-                    I love extreme sports like snowboarding, surfing and climbing and I love to travel, visiting over 20 countries and spending 5 years backpacking the world.
-                    I also love to play video games and am currently playing Balders Gate 3
-                </p>
-                <p>
-                    In tech I am particularly passionate about data analytics, software architecture, and systems programming.
-                    My proficiency in OO, Linux, Git, Programming and DevOps systems, along with my eagerness to continuously expand my skill set,
-                    make me a well-rounded candidate.
-                </p>
-            </section>
-            <section id="about-info-small">
-                <p>
-                    My name is Lewis, I am a 25 year old Computer Science Student currently working as a part time Software Development Consultant.
-                </p>
-                <p>
-                    My professional experience includes my current role as an undergraduate software consultant engineer at
-                    Integral where I am exposed to a variety of different internal and external problem-solving tasks. 
-                    An internship at Amazon, Brisbane, where I engaged in full-stack, end-to-end development and an internship at TallyStone where I worked in back-end development.
-                </p>
-                <p>
-                    I love extreme sports like snowboarding, surfing and climbing and I love to travel, visiting over 20 countries and spending 5 years backpacking the world.
-                    I also love to play video games and read books.
-                </p>
-                <p>
-                    In tech I am particularly passionate about data analytics, software architecture, and systems programming.
-                </p>
-            </section>
-            
-            <figure id='about-icon'>
-                <a href="https://www.instagram.com/lewis_hepple" target="_blank"><img src="images/lewis-profile.jpg"></a>
-            </figure>
-        </main>
-    </body> 
-</html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/masternew.css">
+    <title>Lewis Hepple</title>
+</head>
+<body>
+    <nav class="navbar sticky-top full-width">
+        <div class="flex-row center-content navbar-content">
+            <a href="/index.html" class="nav-link">Home</a>
+            <a href="/about.html" class="selected-page nav-link">About<span class="hide-responsive"> Me</span></a>
+            <a href="/work.html" class="nav-link">Work<span class="hide-responsive"> Experience</span></a>
+            <a href="/skills.html" class="nav-link">Skills<span class="hide-responsive"> & Interests</span></a>
+            <a href="/education.html" class="nav-link">Education</a>
+            <a href="/contact.html" class="nav-link">Contact<span class="hide-responsive"> Me</span></a>
+        </div>
+    </nav>
+    <main class="container main-content">
+        <section>
+            <p>
+                Thank you for taking the time to read through my website. 
+                My name is Lewis, I am a 25 year old Computer Science Student currently working as a part time Software Development Consultant.
+            </p>
+            <p>
+                My professional experience includes my current role as an undergraduate software consultant engineer at
+                Integral where I am exposed to a variety of different internal and external problem-solving tasks. 
+                An internship at Amazon, Brisbane, where I engaged in full-stack, end-to-end development and an internship at TallyStone where I worked in back-end development.
+            </p>
+            <p>
+                I love extreme sports like snowboarding, surfing and climbing and I love to travel, visiting over 20 countries and spending 5 years backpacking the world.
+                I also love to play video games and am currently playing Balders Gate 3
+            </p>
+            <p>
+                In tech I am particularly passionate about data analytics, software architecture, and systems programming.
+                My proficiency in OO, Linux, Git, Programming and DevOps systems, along with my eagerness to continuously expand my skill set,
+                make me a well-rounded candidate.
+            </p>
+        </section>
+        <figure class="center-content">
+            <a href="https://www.instagram.com/lewis_hepple" target="_blank"><img src="images/lewis-profile.jpg" class="large-image"></a>
+        </figure>
+    </main>
+</body>
+</html>

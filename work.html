@@ -4,47 +4,139 @@
         <script src="js/work.js"></script>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" href="css/navbar.css">
-        <link rel="stylesheet" type="text/css" href="css/education.css">
-        <link rel="stylesheet" type="text/css" href="css/master.css">
-        <title>Lewis Hepple</title>
+        <link rel="stylesheet" type="text/css" href="css/masternew.css">
+        <link rel="stylesheet" type="text/css" href="css/skills.css">
+        <link rel="stylesheet" type="text/css" href="css/work.css">
 
+        <title>Lewis Hepple</title>
     </head>
     <body>
         <nav id="navbar">
-            <article id="navbar-content">
-                <a href="/index.html">Home</a>
-                <a href="/about.html">About <span>Me</span></a>
-                <a href="/work.html" class="selectedPage">Work<span> Experience</span></a>
-                <a href="/skills.html">Skills<span> + Interests</span></a>
-                <a href="/education.html">Education</a>
-                <a href="/contact.html">Contact<span> Me</span></a>
-            </article>
-        </nav>
-        <main> 
-            <div id="education-info-container">
-                <div class='education-info'>
-                    <figure class="work-logo">
-                        <img id='amazon' src="images/amazon.png"/>
-                    </figure>
-                    <div id='amazon-info' class='content work-content'> I received a glowing recommendation after my internship at Amazon, Brisbane. Here I engaged in full-stack, end-to-end development, with a JS, TS, Kotlin, Java, and XML stack hosted on AWS with NoSQL databases. Here, I independently managed my projects while collaborating with international stakeholders as well as working closely with a team to further team goals and projects. I also took this opportunity to run team SCRUM meetings and coordinated stand-ups and retro’s.
-                    </div>
-                </div>
-
-                <div class='education-info'>
-                    <figure class="work-logo reverse-image">
-                        <img id='integral' class='reversed-image'src="images/logo-integral.png"/>
-                    </figure>
-                    <div id='integral-info' class='content-reversed work-content'>At Integral I work as an undergraduate software consultant. I work as a member of a team which faces unique challenges every single day. From working with big banks, government and big corporations to solve large scale problems, all the way to creating internal tools which make our jobs easier. Here my development stack changes regularly based on the specific jobs required.</div>
-                </div>
-
-                <div class='education-info'>
-                    <figure class="work-logo">
-                        <img id='tallystone' src="images/Tallystone.png"/>
-                    </figure>
-                    <div id='tallystone-info' class='content work-content'>I conducted an informal internship at TallyStone Pty Ltd where I shadowed and aided the principle developer. I mostly worked on creating new back-end API’s and customer forms, as well as creating the entire unit testing suite. I worked closely with my mentor to develop a sophisticated front end design suite and to streamline the user experience. </div>
-                </div>
+            <div class="navbar-content center-content full-width text-small">
+                <a href="/index.html" class="nav-link">Home</a>
+                <a href="/about.html" class="nav-link">About <span class="hide-responsive">Me</span></a>
+                <a href="/work.html" class="nav-link selected-page">Work<span class="hide-responsive"> Experience</span></a>
+                <a href="/skills.html" class="nav-link">Skills<span class="hide-responsive"> + Interests</span></a>
+                <a href="/education.html" class="nav-link">Education</a>
+                <a href="/contact.html" class="nav-link">Contact<span class="hide-responsive"> Me</span></a>
             </div>
+        </nav>
+        <main class="text-medium"> 
+            <section class="icon-group-container">
+                <div class="work-grid">
+                    <article class="image-group">
+                        <img src="images/work/integral.png" alt="Amazon Logo">
+                        <img src="images/work/integral2.jpeg" alt="Backened Flow Diagram">
+                    </article>  
+                    <article class="work-content">
+                        <div>
+                            <h3 class="text-large">Integral</h3>
+                        </div>                 
+                        
+                     
+                        <i>
+                            Software Development Consultant
+                        </i>
+                       
+                        <p>
+                            At Integral I work as an undergraduate software consultant. I work as a member of a team which faces unique challenges every single day. From working with big banks, government and big corporations to solve large scale problems, all the way to creating internal tools which make our jobs easier. Here my development stack changes regularly based on the specific jobs required.
+                        </p>
+
+                        <div class="work-icon-group">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/b/bb/Java-logo.png">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/Docker-svgrepo-com.svg">
+                            <img src="images/languages/GraphQL.svg" alt="GraphQL">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg" alt="Tailwind CSS">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Bootstrap_logo.svg" alt="Bootstrap CSS">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/Docker-svgrepo-com.svg" alt="Docker">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg" alt="PostgreSQL">
+                        </div>
+                    </article>
+                    
+                        
+                    
+                </div>
+            </section>
+
+            <div class="theme2">
+                <svg class="section-break" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M0,0 V60 Q30,90 60,60 T120,60 T180,60 T240,60 T300,60 T360,60 T420,60 T480,60 T540,60 T600,60 T660,60 T720,60 T780,60 T840,60 T900,60 T960,60 T1020,60 T1080,60 T1140,60 T1200,60 V0 z"></path>
+                </svg>
+                <section class="icon-group-container" style="padding-bottom: 6rem; margin-bottom: 0;">
+                    
+                    <div class="work-grid" >
+                        <article class="image-group">
+                            <img src="images/work/amazon.png" alt="Amazon Logo">
+                            <img src="images/work/amazon1.png" alt="Backened Flow Diagram">
+                        </article>  
+                        <article class="work-content">
+                            <div>
+                                <h3 class="text-large">Amazon</h3>                       
+                            </div>
+                            <div>
+                                <i>
+                                    Software Development Engineer Intern
+                                </i>
+                            </div>
+                            <p>
+                                I received a glowing recommendation after my internship at Amazon, Brisbane. Here I engaged in full-stack, end-to-end development. I independently managed my project while collaborating with international stakeholders as well as working closely with a team to further team goals and other projects. I also took this opportunity to run team SCRUM meetings and coordinated stand-ups and retro’s.
+                            </p>
+                            <div class="work-icon-group">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/b/bb/Java-logo.png">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/Docker-svgrepo-com.svg">
+                                <img src="images/languages/GraphQL.svg" alt="GraphQL">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg" alt="Tailwind CSS">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Bootstrap_logo.svg" alt="Bootstrap CSS">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/Docker-svgrepo-com.svg" alt="Docker">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg" alt="PostgreSQL">
+                            </div>
+                        </article>
+                    </div>
+                </section>
+            </div>
+            <section>
+                <svg class="section-break2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M0,0 V60 Q30,90 60,60 T120,60 T180,60 T240,60 T300,60 T360,60 T420,60 T480,60 T540,60 T600,60 T660,60 T720,60 T780,60 T840,60 T900,60 T960,60 T1020,60 T1080,60 T1140,60 T1200,60 V0 z"></path>
+                </svg>
+                <section class="icon-group-container">
+                    <div class="work-grid">
+                        <article class="image-group">
+                            <img src="images/work/tally1.png" alt="Amazon Logo">
+                            <img src="images/work/tally2.png" alt="Backened Flow Diagram">
+                        </article>  
+                        <article class="work-content">
+                            <div>
+                                <h3 class="text-large">TallyStone</h3>                       
+                            </div>
+                            <div>
+                                <i>
+                                    Software Development Intern
+                                </i>
+                            </div>
+                            <p>
+                                I conducted an informal internship at TallyStone Pty Ltd where I shadowed and aided the principle developer. I mostly worked on creating new back-end API’s and customer forms, as well as creating the entire unit testing suite. I worked closely with my mentor to develop a sophisticated front end design suite and to streamline the user experience.
+                            </p>
+                            <div class="work-icon-group">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/b/bb/Java-logo.png">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/Docker-svgrepo-com.svg">
+                                <img src="images/languages/GraphQL.svg" alt="GraphQL">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg" alt="Tailwind CSS">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Bootstrap_logo.svg" alt="Bootstrap CSS">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/Docker-svgrepo-com.svg" alt="Docker">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg" alt="PostgreSQL">
+                            </div>
+                        </article>
+                    </div>
+                </section>
+            </section>
+            <section class="theme2">
+                <svg class="section-break" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M0,0 V60 Q30,90 60,60 T120,60 T180,60 T240,60 T300,60 T360,60 T420,60 T480,60 T540,60 T600,60 T660,60 T720,60 T780,60 T840,60 T900,60 T960,60 T1020,60 T1080,60 T1140,60 T1200,60 V0 z"></path>
+                </svg>
+            </section>
         </main>
     </body>
 </html>

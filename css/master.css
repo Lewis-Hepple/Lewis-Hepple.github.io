@@ -1,5 +1,5 @@
 body {
-  background-image: linear-gradient(#000 1%, #1e0f1d 60% , #000 100%);
+  background-image: linear-gradient(rgba(15, 16, 20, 1) 1%, #1e0f1d 60%, rgba(15, 16, 20, 1) 100%);
   margin:0;
   color: #c8b8b8;
   display:block;
@@ -15,77 +15,5 @@ canvas
   background: #000000;
 }
 
-.gallery {
-  --d: 25s; /* duration */
 
-  display: grid;
-  width: 55vh;
-  margin-left: 32.5vw;
-  margin-top: 22.5vh;
-  margin-bottom: 22.5vh;
-}
-.gallery > img {
-  grid-area: 1/1;
-  width: 100%;
-  aspect-ratio: 1;
-  object-fit: cover;
-  border: 10px solid #c6a1cf;
-  box-shadow: 0 0 4px #0007;
-  z-index: 2;
-  animation:
-    slide var(--d) infinite,
-    z-order var(--d) infinite steps(1);
-}
-.gallery img:last-child {
-  animation-name: slide, z-order-last;
-}
 
-/* Expanded loop for .gallery > img:nth-child(...) */
-.gallery > img:nth-child(1) {
-  animation-delay: calc(-20s);
-  --r: -12deg; /* random example */
-}
-.gallery > img:nth-child(2) {
-  animation-delay: calc(-15s);
-  --r: 8deg; /* random example */
-}
-.gallery > img:nth-child(3) {
-  animation-delay: calc(-10s);
-  --r: -20deg; /* random example */
-}
-.gallery > img:nth-child(4) {
-  animation-delay: calc(-5s);
-  --r: 4deg; /* random example */
-}
-.gallery > img:nth-child(5) {
-  animation-delay: calc(0s);
-  --r: 15deg; /* random example */
-}
-
-@keyframes slide {
-  10%  {transform: translateX(120%) rotate(var(--r))}
-  0%,
-  100%,
-  20% {transform: translateX(0%)   rotate(var(--r))}
-}
-
-@keyframes z-order {
-  10%,
-  20% {z-index: 1}
-  90% {z-index: 2}
-}
-
-@keyframes z-order-last {
-  10%,
-  20% {z-index: 1}
-  75% {z-index: 2}
-}
-
-bodynew {
-  margin: 50%;
-  min-height: 100vh;
-  display: grid;
-  place-content: center;
-  background: #CDB380;
-  overflow: hidden;
-}

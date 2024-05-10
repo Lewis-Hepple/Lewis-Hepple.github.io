@@ -11,5 +11,4 @@ window.addEventListener("load", function(){
     document.getElementById("skill-2content").setAttribute("style","opacity:1; margin-top:0");
     document.getElementById("skill-3content").setAttribute("style","opacity:1; margin-top:0");
     document.getElementById("skill-4content").setAttribute("style","opacity:1; margin-top:0");
-
     });

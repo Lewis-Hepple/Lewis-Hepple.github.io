@@ -1,19 +1,55 @@
+/* -----------  Generic Text + Containers ---------------- */
+
 body {
-    background-image: linear-gradient(#000 1%, #1e0f1d 60%, #000 100%);
+    background-color: rgba(15, 16, 20, 1);
     margin: 0;
-    font-family: 'Garamond', serif;
-    color: #c8b8b8; 
-    font-size: calc(sqrt(1vw + 1vh + pow(0.8vmin, 2)));
+    font-family: "Poppins", sans-serif;
+    color: #e0caca; 
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
 }
 
 .text-large {
-    font-size: 2.5rem; 
+    font-size: 2rem; 
 }
 
+.text-medium {
+    font-size: 1.2rem;
+}
+
+.text-small {
+    font-size: 1rem;
+}
+
+.section-break {
+    width:100%;
+    fill: rgba(15, 16, 20, 1);
+}
+
+.section-break2 {
+    width:100%;
+    fill: #e0caca;
+}
+
+.theme2 {
+    background-color: #e0caca;
+    color: rgba(15, 16, 20, 1);
+}
 
 .container {
-    margin: auto;
-    max-width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+}
+
+.wide-container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 85%
 }
 
 .center-content {
@@ -23,63 +59,40 @@ body {
 
 .full-width {
     width: 100%;
-}
-
-.flex-row {
-    display: flex;
+    margin: auto;
 }
 
 .sticky-top {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 20;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
 }
 
-/* Navigation bar */
+/* -----------  NavBar ---------------- */
 .navbar {
     overflow: hidden;
+    z-index: 20;
+    width: 100%;
+    background: rgba(15, 16, 20, 1); /* Semi-transparent background */
 }
 
 .nav-link {
     text-decoration: none;
+    color: #e0caca; 
+    font-family: "Garamond", sans-serif;
     text-align: center;
-    font-size: 1rem;
-    color: #C6A1CF;
     padding: 20px;
     padding-bottom: 2vh;
     padding-top: 2vh;
 }
 
 .nav-link:hover, .selected-page {
-    color: white;
+    color: #C6A1CF;
+    border-bottom: 1px ridge #C6A1CF ;
 }
 
-/* Responsiveness */
-@media screen and (min-width: 632px) {
-    .navbar-content {
-        justify-content: flex-end;
-    }
-}
 
-@media screen and (max-width: 632px) {
-    .hide-responsive {
-        display: none;
-    }
-    .nav-link {
-        padding: 8px;
-    }
-    .text-small {
-        font-size: 0.9rem; /* Slightly smaller font on small screens */
-    }
-    .navbar-content {
-        justify-content: center; /* Center links */
-    }
-}
 
-/* Image styles */
 .large-image {
     border-radius: 3%;
     overflow: hidden;
@@ -90,13 +103,14 @@ body {
 .medium-image {
     border-radius: 3%;
     overflow: hidden;
-    width: min(40vh, 35vw);
+    width: max(40vh, 20vw);
+    max-width: 35vw;
 }
 
 .small-image {
     border-radius: 3%;
     overflow: hidden;
-    width: max(50vh, 60vw);
+    width: max(30vh, 25vw);
     max-width: 80vw;
 }
 
@@ -104,12 +118,20 @@ body {
     margin-block-start: 0.5rem;
 }
 
+.right-aligned {
+    text-align: right;
+}
+
 .main-content {
     padding-top: 60px; 
 }
 
-.four-col-grid img {
-    margin-right: 20px;
+.two-col-grid img {
+    margin: 10px;
+}
+
+.two-col-grid-reversed img {
+    margin: 10px;
 }
 
 .flex-content {
@@ -117,32 +139,117 @@ body {
     flex-direction: column;
 }
 
-.four-col-grid {
+
+.two-col-grid {
+    width: 100%;
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 3rem;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.two-col-grid-reversed {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
     margin-bottom: 20px;
 }
 
+.left-grid {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.right-grid {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+figure {
+    margin:0;
+}
+
 .left-list {
-    list-style-type: none; /* Removes bullet points */
+    list-style-type: none; 
     padding: 0;
 }
 
-.gallery {
-    --d: 25s; /* Animation duration */
-    display: grid;
-    grid-template-areas: "image";
-    margin: 22.5vh auto;
-    width: 55vh;
+@media screen and (max-width: 1000px) {
+
+    /* -------  Responsive for Work Page and Education Page Grids -> Flex ------------- */
+    .two-col-grid, .two-col-grid-reversed {
+        display: grid;
+        grid-template-columns: 1fr;
+        row-gap: 3rem;
+        justify-items: center;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .two-col-grid div, .two-col-grid-reversed div {
+        text-align: center;
+    }
+
+    .right-grid, .left-grid {
+        grid-column: auto;
+        grid-row: auto;
+    }
+
+    .small-image, .medium-image {
+        border-radius: 3%;
+        overflow: hidden;
+        width: 60vh;
+        max-width: 70vw;
+    }
+
+    ul {
+        list-style-type: none; 
+        padding-inline-start: 0;
+    }
+
+
+
+    .text-large {
+        font-size: 2.5rem; 
+    }
+    
+    .text-medium {
+        font-size: 1.1rem;
+    }
+    
+    .text-small {
+        font-size: 1rem;
+    }
+
+    .container {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 82.5%;
+    }
 }
 
-.gallery img {
-    grid-area: image;
-    width: 100%;
-    aspect-ratio: 1;
-    object-fit: cover;
-    border: 10px solid #c6a1cf;
-    box-shadow: 0 0 4px #0007;
-    z-index: 2;
-    animation: slide var(--d) infinite, z-order var(--d) infinite steps(1);
+
+
+@media screen and (min-width: 632px) {
+    .navbar-content {
+        justify-content: flex-end;
+    }
+    .show-responsive-medium {
+        display:none;
+    }
+}
+
+@media screen and (max-width: 632px) {
+    .hide-responsive-medium {
+        display:none;
+    }
+    .hide-responsive {
+        display: none;
+    }
+    .nav-link {
+        padding: 8px;
+    }
+    .navbar-content {
+        justify-content: center;
+    }
 }

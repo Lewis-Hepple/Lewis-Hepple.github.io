@@ -8,6 +8,7 @@
   border-radius: 50%;
   box-shadow: 0 0 5px 1px #bf9bc8;
 }
+
 .lightalt{
   top:0vh;
   left:0vw;
@@ -328,6 +329,7 @@
   -o-animation: cloud2 30s linear infinite;
   transform: translate(-50%,-50%);
 }
+
 @keyframes cloud2 {
   0% {
     margin-left: 95%;
@@ -349,6 +351,7 @@
   -moz-animation: cloud3 35s linear infinite;
   -o-animation: cloud3 35s linear infinite;
 }
+
 @keyframes cloud3 {
   0% {
     margin-left: 10%;
@@ -366,6 +369,7 @@
     transform: translate(-50%,-50%);
   }
 }
+
 #cloud4 img{
   height: 40vh;
   position: absolute;

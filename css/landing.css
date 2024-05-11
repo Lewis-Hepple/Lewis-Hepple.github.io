@@ -1,56 +1,51 @@
-
-#landing {
-  position: relative;
-  overflow: hidden;
-  height: 100vh;
-}
-
-#landing-links {
+.landing-links {
   font-size: 20px;
   justify-content: center;
+  align-items: center;
   display: flex;
   margin-top: 5vh;
   color: #c8b8b8;
 
 }
 
-#landing-links a {
+.landing-links a {
   text-decoration: none;
   text-align: center;
   padding: 5px;
   float: right;
-
 }
-#landing-links a img {
+
+.landing-links img {
   height: 25px;
 }
 
-#info-container {
-  display: flex;
-  position: relative;
-  height: 100%;
-  width: 100%;
-  max-width: 60rem;
-  margin: auto;
-  justify-content: center;
+.landing-links p {
+  font-size: 0.9rem;
 }
 
-#name {
+figure {
+  width: 100px;
+  fill: #c8b8b8;
+}
+
+.title {
   margin-top: auto;
   margin-right: auto;
   margin-bottom: auto;
   margin-left: auto;
+  font-family: 'Garamont';
   color: #C6A1CF;
-  font-size: 6rem;
-
+  font-size: 5rem;
 }
 
-@media screen and (max-width: 632px) {
-  #name2 {
-    display: none;
-  }
-  #name1{
-    font-size: 7rem;
-  }
-  
+.sun {
+  transform: rotate(25deg);
+  top: -15rem;
+  left: -15rem;
+  max-width: 50rem;
+  min-width: 15rem;
+  width: 100%;
+  transition: all 5s;
+  -webkit-animation: solar-animation 60s linear infinite;
+  animation: solar-animation 60s linear infinite;
 }

@@ -6,35 +6,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/navbar.css">
     <link rel="stylesheet" type="text/css" href="css/landing.css">
-    <link rel="stylesheet" type="text/css" href="css/master.css">
+    <link rel="stylesheet" type="text/css" href="css/masternew.css">
     <link rel="stylesheet" type='text/css' href="css/animations.css">
     <title>Lewis Hepple</title>
 
   </head>
   <body>
-    <nav id="navbar">
-      <article id="navbar-content text-small">
-        <a href="/index.html">Home</a>
-        <a href="/about.html">About <span>Me</span></a>
-        <a href="/work.html">Work<span> Experience</span></a>
-        <a href="/skills.html">Skills<span> + Interests</span></a>
-        <a href="/education.html">Education</a>
-        <a href="/contact.html">Contact<span> Me</span></a>
-      </article>
-    </nav>
-    <main id='landing'>
-      <div id='ainmations'>
+    <nav class="navbar sticky-top full-width">
+      <div class="center-content navbar-content">
+          <a href="/index.html" class="selected-page nav-link">Home</a>
+          <a href="/about.html" class="nav-link">About<span class="hide-responsive"> Me</span></a>
+          <a href="/work.html" class="nav-link">Work<span class="hide-responsive"> Experience</span></a>
+          <a href="/skills.html" class="nav-link">Skills<span class="hide-responsive"> & Interests</span></a>
+          <a href="/education.html" class="nav-link">Education</a>
+          <a href="/contact.html" class="nav-link">Contact<span class="hide-responsive"> Me</span></a>
+      </div>
+  </nav>
+    <main style="height:95vh; width:100vw">
+      <section id='ainmations'>
         <figure id='lights'>
           <figure class='wrapper1'>
             <figure class='wrapper2'>
-              <figure class='light' id='light1'>
+              <figure class="cablecar">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" version="1.1" viewBox="0 -600 2339.0002 1808" width="100%">
+                  <g transform="translate(-131,-486)">
+                    <path d="m 1264.9999,59 v 373 q 0,23 8,54 8,31 19.0001,51 l 50,89 h 217.0001 V 729 H 1794 q 44,0 81.5,32 37.4999,32 43.5001,78 l 53.9998,441.9999 Q 1976,1307.0001 1976,1340 q 0,40.9999 -5.5,84 -5.5001,43.0001 -13.5001,75.0001 L 1935.0001,1586 q -12,46 -54.5001,77.0001 Q 1838,1694 1794,1694 H 807 q -47,0 -88,-32 -41,-32 -52,-76 l -24,-86.9999 q -9,-32 -13,-76.5001 -4,-44.5 -5,-86.5 0,-31.0001 3,-55.0001 L 682,839 q 6,-46 43.50006,-78 Q 763,729 807,729 h 234 V 626 h 83.9999 q -1.9998,-4 -4,-10 l -5.9998,-15 q -4,-9 -9.0001,-24 l -13.0001,-37 q -8,-19 -13.4999,-52 -5.5,-33 -5.5,-56 V 59 H 131 V -6 h 943 q 0,-58 9.5,-83 9.4999,-25 46.5,-25 h 229.0001 q 22.9999,0 39.4999,16 16.5001,16 16.5001,39 0,19 -11.0001,33.5 -11.0001,14.5 -28,19.5 h 1094.0002 v 65 q 0,0 -1205.0003,0 z M 1054,893 q 0,-14 -10,-23.49994 Q 1034,860 1020,860 H 813 q -14,0 -24.50006,9.50006 Q 778,879 776,893 l -34,375.9999 v 4 q 0,12 8.49994,20.5001 Q 759,1302 772,1302 h 248 q 14,0 24,-9.5 10,-9.4999 10,-23.5001 0,0 0,-375.9999 z m 493.0001,375.9999 q 0,14.0002 9.9998,23.5001 10.0002,9.5 24,9.5 H 1828 q 14,0 22.5,-8.5 8.5001,-8.5001 8.5001,-20.5001 v -4 L 1824,893 q -2,-14 -12,-23.49994 Q 1802,860 1788,860 h -207.0001 q -13.9998,0 -24,9.50006 Q 1547.0001,879 1547.0001,893 q 0,0 0,375.9999 z M 1196.9999,860 q -13.9998,0 -23.4999,9.50006 Q 1164,879 1164,893 v 375.9999 q 0,14.0002 9.5,23.5001 9.5001,9.5 23.4999,9.5 H 1404 q 14,0 23.5,-9.5 9.4999,-9.4999 9.4999,-23.5001 V 893 q 0,-14 -9.4999,-23.49994 Q 1418,860 1404,860 q 0,0 -207.0001,0 z"/>
+                  </g>
+                </svg>
               </figure>
             </figure>
           </figure>
           <figure class='wrapper1'>
             <figure class='wrapper2'>
-              <figure class='lightalt' id='light2'>
-              </figure>
+              <figure class="mountain" id="light1">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                  <path d="M149 24.32L123 124.4l27.8 44.8 15.9-29.4 37.5 30.9 17.5-55.5zm169.7 43.7l-32.2 48.38 10.7 25.5 21.9-21.7 18.1 42.8 10.3-21.7zm-83.4 64.18l-21.9 69.3-41.3-33.9L152 205l-35.2-56.7-88.38 339.4H154.9c45.6-17 135.3-56.7 137.2-106.3 1.7-47.8-108.9-43.4-110.8-91.2-1.5-39.1 84.5-81.5 84.5-81.5s-54.1 43.3-47.4 71c12.9 53 125.6 27.6 143.2 79.3 13 38.2-33.5 104.3-52.2 128.7h174.2L356.5 164.3 336.4 207l-23.5-55.4-22.1 21.9-16.3-39.1-17 25.5z"/>
+                </svg>
+              </figure> 
             </figure>
           </figure>
           <figure class='wrapper1'>
@@ -156,17 +164,30 @@
           <figure id='cloud3'><img src="images/CLOUDBIG.png"/></figure>
           <figure id='cloud4'><img src="images/CLOUDBIG.png"/></figure>
         </figure>
-      </div>
-      <article id='info-container'>
-        <section id='name'>
-          <span id='name1'>Lewis</span>
-          <span id='name2'>Hepple</span>
-          <section id='landing-links'>
+      </section>
+      
+      <article class='container center-content' style="margin-top: 30vh; flex-direction: column;">
+        <figure class="cablecar" style="display:none">
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" version="1.1" viewBox="0 -600 2339.0002 1808" width="100%">
+            <g transform="translate(-131,-486)">
+              <path d="m 1264.9999,59 v 373 q 0,23 8,54 8,31 19.0001,51 l 50,89 h 217.0001 V 729 H 1794 q 44,0 81.5,32 37.4999,32 43.5001,78 l 53.9998,441.9999 Q 1976,1307.0001 1976,1340 q 0,40.9999 -5.5,84 -5.5001,43.0001 -13.5001,75.0001 L 1935.0001,1586 q -12,46 -54.5001,77.0001 Q 1838,1694 1794,1694 H 807 q -47,0 -88,-32 -41,-32 -52,-76 l -24,-86.9999 q -9,-32 -13,-76.5001 -4,-44.5 -5,-86.5 0,-31.0001 3,-55.0001 L 682,839 q 6,-46 43.50006,-78 Q 763,729 807,729 h 234 V 626 h 83.9999 q -1.9998,-4 -4,-10 l -5.9998,-15 q -4,-9 -9.0001,-24 l -13.0001,-37 q -8,-19 -13.4999,-52 -5.5,-33 -5.5,-56 V 59 H 131 V -6 h 943 q 0,-58 9.5,-83 9.4999,-25 46.5,-25 h 229.0001 q 22.9999,0 39.4999,16 16.5001,16 16.5001,39 0,19 -11.0001,33.5 -11.0001,14.5 -28,19.5 h 1094.0002 v 65 q 0,0 -1205.0003,0 z M 1054,893 q 0,-14 -10,-23.49994 Q 1034,860 1020,860 H 813 q -14,0 -24.50006,9.50006 Q 778,879 776,893 l -34,375.9999 v 4 q 0,12 8.49994,20.5001 Q 759,1302 772,1302 h 248 q 14,0 24,-9.5 10,-9.4999 10,-23.5001 0,0 0,-375.9999 z m 493.0001,375.9999 q 0,14.0002 9.9998,23.5001 10.0002,9.5 24,9.5 H 1828 q 14,0 22.5,-8.5 8.5001,-8.5001 8.5001,-20.5001 v -4 L 1824,893 q -2,-14 -12,-23.49994 Q 1802,860 1788,860 h -207.0001 q -13.9998,0 -24,9.50006 Q 1547.0001,879 1547.0001,893 q 0,0 0,375.9999 z M 1196.9999,860 q -13.9998,0 -23.4999,9.50006 Q 1164,879 1164,893 v 375.9999 q 0,14.0002 9.5,23.5001 9.5001,9.5 23.4999,9.5 H 1404 q 14,0 23.5,-9.5 9.4999,-9.4999 9.4999,-23.5001 V 893 q 0,-14 -9.4999,-23.49994 Q 1418,860 1404,860 q 0,0 -207.0001,0 z"/>
+            </g>
+          </svg>
+        </figure>
+        <figure class="mountain" style="display: none;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path d="M149 24.32L123 124.4l27.8 44.8 15.9-29.4 37.5 30.9 17.5-55.5zm169.7 43.7l-32.2 48.38 10.7 25.5 21.9-21.7 18.1 42.8 10.3-21.7zm-83.4 64.18l-21.9 69.3-41.3-33.9L152 205l-35.2-56.7-88.38 339.4H154.9c45.6-17 135.3-56.7 137.2-106.3 1.7-47.8-108.9-43.4-110.8-91.2-1.5-39.1 84.5-81.5 84.5-81.5s-54.1 43.3-47.4 71c12.9 53 125.6 27.6 143.2 79.3 13 38.2-33.5 104.3-52.2 128.7h174.2L356.5 164.3 336.4 207l-23.5-55.4-22.1 21.9-16.3-39.1-17 25.5z"/>
+          </svg>
+        </figure> 
+        <h1 class='title'>
+          Lewis<span class='hide-responsive'> Hepple</span>
+        </h1>
+          <article class='landing-links'>
             <p>Check me out here:</p>
             <a href="https://www.instagram.com/lewis_hepple" target="_blank"><img src="images/insta-icon.png"></a>
             <a href="Lewis Resume.pdf" target='_blank'><img src='images/CV.png'></a>
             <a href='https://www.github.com/LordPenguin12' target='_blank'><img src='images/Github.png'></a>
-          </section>
+          </article>
         </section>
       </article>
     </main>

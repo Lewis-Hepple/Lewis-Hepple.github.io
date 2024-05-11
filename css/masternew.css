@@ -28,11 +28,13 @@ body {
 .section-break {
     width:100%;
     fill: rgba(15, 16, 20, 1);
+    margin-top: -3px;
 }
 
 .section-break2 {
     width:100%;
     fill: #e0caca;
+    margin-top: -3px;
 }
 
 .theme2 {
@@ -91,14 +93,6 @@ body {
     border-bottom: 1px ridge #C6A1CF ;
 }
 
-
-
-.large-image {
-    border-radius: 3%;
-    overflow: hidden;
-    width: max(50vh, 60vw);
-    max-width: 80vw;
-}
 
 .medium-image {
     border-radius: 3%;

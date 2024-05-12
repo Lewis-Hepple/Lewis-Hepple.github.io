@@ -34,6 +34,24 @@
     width: 50px;
 }
 
+.hidden-left {
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0.5s ease-out;
+
+}
+
+.hidden-right {
+    opacity: 0;
+    transform: translateX(100%);
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0.5s ease-out;
+}
+
+.visible {
+    opacity: 1;
+    transform: translateX(0%);
+}
+
 
 @media screen and ((min-width: 1150px) or (max-width: 800px)) {
     .image-group img:nth-child(2) {

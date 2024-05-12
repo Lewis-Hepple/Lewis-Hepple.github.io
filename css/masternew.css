@@ -93,19 +93,11 @@ body {
     border-bottom: 1px ridge #C6A1CF ;
 }
 
-
 .medium-image {
     border-radius: 3%;
     overflow: hidden;
-    width: max(40vh, 20vw);
-    max-width: 35vw;
-}
-
-.small-image {
-    border-radius: 3%;
-    overflow: hidden;
-    width: max(30vh, 25vw);
-    max-width: 80vw;
+    width: 20rem;
+    height: auto;
 }
 
 .content p, h3, ul {
@@ -117,7 +109,12 @@ body {
 }
 
 .main-content {
+    min-height: calc(95vh - calc(100vw / 10));
     padding-top: 60px; 
+}
+
+.spacing {
+    line-height: 1.35rem;
 }
 
 .two-col-grid img {
@@ -137,7 +134,7 @@ body {
 .two-col-grid {
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 20rem 1fr;
     column-gap: 3rem;
     margin-bottom: 20px;
     align-items: center;
@@ -168,15 +165,14 @@ figure {
     padding: 0;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1100px) {
 
-    /* -------  Responsive for Work Page and Education Page Grids -> Flex ------------- */
+    /* -------  Responsive for Education Page Grids -> Flex ------------- */
     .two-col-grid, .two-col-grid-reversed {
         display: grid;
         grid-template-columns: 1fr;
-        row-gap: 3rem;
+        row-gap: 1rem;
         justify-items: center;
-        flex-wrap: wrap;
         justify-content: center;
     }
 
@@ -189,19 +185,11 @@ figure {
         grid-row: auto;
     }
 
-    .small-image, .medium-image {
-        border-radius: 3%;
-        overflow: hidden;
-        width: 60vh;
-        max-width: 70vw;
-    }
 
     ul {
         list-style-type: none; 
         padding-inline-start: 0;
     }
-
-
 
     .text-large {
         font-size: 2.5rem; 

@@ -11,18 +11,18 @@
 
 body.dark-theme {
     --background-color: #013d45;
-    --background-color2: #0f2028;
+    --background-color2: #f4f4f4;
     --text-color: #00d09f;
-    --text-color2: #f4f4f4;
+    --text-color2: #0f2028;
     --link-color: #C6A1CF;
 }
 
 
 body.dark-theme2 {
     --background-color: #FBE9D0;
-    --background-color2: rgba(15, 16, 20, 1);
+    --background-color2: #b08473;
     --text-color: #244855;
-    --text-color2: #b08473;
+    --text-color2: rgba(15, 16, 20, 1);
     --link-color: #E64833;
 }
 

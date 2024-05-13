@@ -7,31 +7,31 @@ window.addEventListener("load", function() {
     const tallystoneText = document.getElementById('tallystoneText');
 
     function revealOnScroll() {
-        var windowHeight = window.innerHeight; // Use innerHeight to get the viewable height
-        var scrollY = window.scrollY || window.pageYOffset; // Compatibility with all browsers
+        var windowHeight = window.scrollY;
+        var elementTopAmazon = amazonImage.getBoundingClientRect().top;
+        var elementTopTallystone = tallystoneImage.getBoundingClientRect().top;
 
-        var elementTopAmazon = amazonImage.getBoundingClientRect().top + scrollY;
-        var elementTopTallystone = tallystoneImage.getBoundingClientRect().top + scrollY;
-        
-        console.log("scrollY: " + scrollY + " amazon height: " + elementTopAmazon);
+        console.log("windowHeight: " + windowHeight + "  amazon height: " + elementTopAmazon + "  tallyheight: "+ elementTopTallystone);
 
-        if (elementTopAmazon < windowHeight + 200) {
+        if (elementTopAmazon < 300) { 
             amazonImage.classList.add('visible');
             amazonImage2.classList.add('visible');
             amazonText.classList.add('visible');
         }
 
-        if (elementTopTallystone < windowHeight + 200) {
+        if (elementTopTallystone < 300) {
             tallystoneImage.classList.add('visible');
             tallystoneImage2.classList.add('visible');
             tallystoneText.classList.add('visible');
         }
     }
 
-    // Listen for both scroll and resize events
-    window.addEventListener('scroll', revealOnScroll);
-    window.addEventListener('resize', revealOnScroll); // Handle resize to adjust to new window sizes
+    function handleResize() {
+        revealOnScroll(); // Check if elements should be visible after a resize
+    }
 
-    // Optionally, execute once at load to check if elements are already in view
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('resize', handleResize);
+
     revealOnScroll();
 });

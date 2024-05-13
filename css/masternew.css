@@ -1,10 +1,46 @@
 /* -----------  Generic Text + Containers ---------------- */
 
+:root {
+    --background-color: rgba(15, 16, 20, 1);
+    --background-color2: #f4f4f4;
+    --text-color: #e0caca;
+    --text-color2: #0f2028;
+    --link-color: #C6A1CF;
+}
+
+
+body.dark-theme {
+    --background-color: #013d45;
+    --background-color2: #0f2028;
+    --text-color: #00d09f;
+    --text-color2: #f4f4f4;
+    --link-color: #C6A1CF;
+}
+
+
+body.dark-theme2 {
+    --background-color: #FBE9D0;
+    --background-color2: rgba(15, 16, 20, 1);
+    --text-color: #244855;
+    --text-color2: #b08473;
+    --link-color: #E64833;
+}
+
+body.dark-theme3 {
+    --background-color: #EBE9E1;
+    --background-color2: #E43D12;
+    --text-color2: #EBE9E1;
+    --text-color: #E43D12;
+    --link-color: #EFB11D;
+}
+
+
+
 body {
-    background-color: rgba(15, 16, 20, 1);
+    background-color: var(--background-color);
     margin: 0;
     font-family: "Poppins", sans-serif;
-    color: #e0caca; 
+    color: var(--text-color); 
 }
 
 .subtitle {
@@ -27,19 +63,19 @@ body {
 
 .section-break {
     width:100%;
-    fill: rgba(15, 16, 20, 1);
+    fill: var(--background-color);
     margin-top: -3px;
 }
 
 .section-break2 {
     width:100%;
-    fill: #e0caca;
+    fill: var(--background-color2);
     margin-top: -3px;
 }
 
 .theme2 {
-    background-color: #e0caca;
-    color: rgba(15, 16, 20, 1);
+    background-color: var(--background-color2);
+    color: var(--text-color2);
 }
 
 .container {
@@ -70,17 +106,30 @@ body {
     left: 0;
 }
 
+.theme-toggle {
+    margin-top: 0.2rem;
+    margin-left: 0.5rem;
+    width: 7rem;
+    height: 2rem;
+    color: var(--text-color);
+    border: var(--text-color) solid 1px;
+    border-radius: 10px;
+    background-color: var(--background-color);
+}
+
 /* -----------  NavBar ---------------- */
 .navbar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     overflow: hidden;
     z-index: 20;
     width: 100%;
-    background: rgba(15, 16, 20, 1); /* Semi-transparent background */
+    background: var(--background-color);
 }
 
 .nav-link {
     text-decoration: none;
-    color: #e0caca; 
+    color: var(--text-color); 
     font-family: "Garamond", sans-serif;
     text-align: center;
     padding: 20px;
@@ -89,8 +138,8 @@ body {
 }
 
 .nav-link:hover, .selected-page {
-    color: #C6A1CF;
-    border-bottom: 1px ridge #C6A1CF ;
+    color: var(--link-color);
+    border-bottom: 1px ridge var(--link-color) ;
 }
 
 .medium-image {

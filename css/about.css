@@ -1,6 +1,6 @@
 .hobbie-icon {
   width: 100px;
-  fill: #e0caca;
+  fill: var(--text-color);
 }
 
 

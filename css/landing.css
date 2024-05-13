@@ -4,7 +4,7 @@
   align-items: center;
   display: flex;
   margin-top: 5vh;
-  color: #c8b8b8;
+  color: var(--text-color);
 
 }
 
@@ -25,7 +25,7 @@
 
 figure {
   width: 100px;
-  fill: #c8b8b8;
+  fill: var(--text-color);
 }
 
 .title {
@@ -34,7 +34,7 @@ figure {
   margin-bottom: auto;
   margin-left: auto;
   font-family: 'Garamont';
-  color: #C6A1CF;
+  color: var(--text-color);
   font-size: 5rem;
 }
 

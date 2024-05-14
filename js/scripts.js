@@ -14,6 +14,14 @@ function toggleTheme() {
         localStorage.setItem('theme', "3");
     } else if (body.classList.contains('dark-theme3')) {
         body.classList.remove('dark-theme3');
+        body.classList.add("dark-theme4")  
+        localStorage.setItem('theme', "4");
+    } else if (body.classList.contains('dark-theme4')) {
+        body.classList.remove('dark-theme4');
+        body.classList.add("dark-theme5")
+        localStorage.setItem('theme', "5");
+    } else if (body.classList.contains('dark-theme5')) {
+        body.classList.remove('dark-theme5');
         localStorage.setItem('theme', "0");
     } else {
         body.classList.add("dark-theme")
@@ -24,21 +32,20 @@ function toggleTheme() {
 document.addEventListener('DOMContentLoaded', function() {
     var savedTheme = localStorage.getItem('theme');
     if (savedTheme === "1") {
-        document.body.classList.add('dark-theme1');
+        document.body.classList.add('dark-theme');
     } else if (savedTheme === "2") {
         document.body.classList.add('dark-theme2');
     } else if (savedTheme === "3") {
         document.body.classList.add('dark-theme3');
-    } else {
+    } else if (savedTheme === "4") {
         document.body.classList.add('dark-theme4');
-    }
+    } else if (savedTheme === "5") {
+        document.body.classList.add('dark-theme5');
+    } 
 
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    var themeToggleButton = document.querySelector('.theme-toggle');
 
-});
 
 
 // ----------  Contact Me From ---------------------

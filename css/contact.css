@@ -37,7 +37,7 @@ input:-internal-autofill-selected,
 .contact-form input,
 .contact-form textarea {
     width: 100%;
-    background-color: var(--text-color);
+    background-color: var(--object-color);
     color: var(--background-color);
     border-radius: 10px;
     border-style: none;
@@ -49,7 +49,7 @@ input:-internal-autofill-selected,
     color: var(--text-color);
     border: var(--text-color) solid 1px;
     border-radius: 10px;
-    background-color: var(--background-color);
+    background-color: var(--object-color);
 }
 
 @media screen and (max-width: 760px) {

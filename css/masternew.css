@@ -12,9 +12,9 @@
 body.dark-theme {
     --background-color: #013d45;
     --background-color2: #f4f4f4;
-    --text-color: #00d09f;
+    --text-color: #f4f4f4;
     --text-color2: #0f2028;
-    --link-color: #C6A1CF;
+    --link-color: #00d09f;
 }
 
 
@@ -27,11 +27,28 @@ body.dark-theme2 {
 }
 
 body.dark-theme3 {
-    --background-color: #EBE9E1;
-    --background-color2: #E43D12;
-    --text-color2: #EBE9E1;
-    --text-color: #E43D12;
+    --background-color2: #EBE9E1;
+    --background-color: #a7391d;
+    --text-color: #EBE9E1;
+    --text-color2: #a7391d;
     --link-color: #EFB11D;
+}
+
+body.dark-theme4 {
+    --background-color2: #697184;
+    --background-color: #D8CFD0;
+    --text-color: #413F3D;
+    --text-color2: #F2F1EF;
+    --link-color: #B1A6A4;
+}
+
+body.dark-theme5 {
+    --background-color2: #FAF6F2;
+    --background-color: #DED1BD;
+    --text-color: #683B2B;
+    --text-color2: #683B2B;
+    --link-color: #B08401;
+    --object-color: #556774;
 }
 
 

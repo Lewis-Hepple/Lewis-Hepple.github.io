@@ -1,20 +1,43 @@
 /* -----------  Generic Text + Containers ---------------- */
 
 :root {
-    --background-color: rgba(15, 16, 20, 1);
-    --background-color2: #f4f4f4;
-    --text-color: #e0caca;
+    --background-color: rgb(114 96 160);
+    --background-color2: #efcdcd;
+    --text-color: #efcdcd;
     --text-color2: #0f2028;
     --link-color: #C6A1CF;
 }
 
+body {
+    position: relative;
+    height : 100%;
+}
+
+#typewriter {
+    height: 80vh;
+}
+
+.background-text {
+    position: fixed;
+    top: 10vh;
+    left: 5vw;
+    font-size: 0.5rem; 
+    color: var(--link-color); 
+    white-space: pre; 
+    pointer-events: none;
+    z-index: -1; 
+    text-align: left; 
+    line-height: 0.8; 
+}
+
 
 body.dark-theme {
-    --background-color: #013d45;
+    --background-color: #025762;
     --background-color2: #f4f4f4;
     --text-color: #f4f4f4;
-    --text-color2: #0f2028;
+    --text-color2: #025762;
     --link-color: #00d09f;
+    --object-color: #f4f4f4;
 }
 
 

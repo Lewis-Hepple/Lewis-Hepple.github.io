@@ -1,0 +1,67 @@
+#define PORT 8080
+#define BUFFER_SIZE 1024
+#define MAX_CLIENTS 10
+
+void *handle_client(void *arg);
+void error(const char *msg);
+
+int main() {
+    int server_fd, new_socket;
+    struct sockaddr_in address;
+    int opt = 1;
+    int addrlen = sizeof(address);
+    pthread_t thread_id;
+    if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) == 0) {
+        error("Socket creation error");
+    }
+    if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt))) {
+        error("setsockopt error");
+    }
+    address.sin_family = AF_INET;
+    address.sin_addr.s_addr = INADDR_ANY;
+    address.sin_port = htons(PORT);
+    if (bind(server_fd, (struct sockaddr *)&address, sizeof(address)) < 0) {
+        error("Bind error");
+    }
+    if (listen(server_fd, MAX_CLIENTS) < 0) {
+        error("Listen error");
+    }
+    printf("Server listening on port %d\n", PORT);
+    while (1) {
+        if ((new_socket = accept(server_fd, (struct sockaddr *)&address, (socklen_t*)&addrlen)) < 0) {
+            error("Accept error");
+        }
+        printf("New connection accepted\n");
+        if (pthread_create(&thread_id, NULL, handle_client, (void *)&new_socket) != 0) {
+            error("Thread creation error");
+        }
+
+        pthread_detach(thread_id);
+    }
+
+    return 0;
+}
+
+void *handle_client(void *arg) {
+    int sock = *(int *)arg;
+    char buffer[BUFFER_SIZE];
+    int bytes_read;
+    
+    while ((bytes_read = read(sock, buffer, BUFFER_SIZE)) > 0) {
+        buffer[bytes_read] = '\0'; // Null-terminate the received data
+        printf("Client: %s\n", buffer);
+        send(sock, buffer, strlen(buffer), 0);
+    }
+    if (bytes_read == 0) {
+        printf("Client disconnected\n");
+    } else if (bytes_read == -1) {
+        perror("Read error");
+    }
+    close(sock);
+    return NULL;
+}
+
+void error(const char *msg) {
+    perror(msg);
+    exit(EXIT_FAILURE);
+}

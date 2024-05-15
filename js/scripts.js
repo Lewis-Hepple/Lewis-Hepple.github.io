@@ -112,3 +112,57 @@ window.addEventListener("load", function() {
 });
 
 
+//* -------  Typing Effect on Landing Page -------------- */
+
+document.addEventListener("DOMContentLoaded", function() {
+    
+    if (window.location.pathname === '/index.html') {
+        fetch('files/coding.txt')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.text();
+            })
+            .then(data => {
+                const lines = data.split('\n'); 
+                startTypingEffect(lines);
+            })
+            .catch(error => {
+                console.error('There has been an error fetching your background text', error);
+            });
+    }
+
+    function startTypingEffect(lines) {
+        const speed = 20; // Adjust typing speed in milliseconds
+        let lineIndex = 0;
+        let charIndex = 0;
+
+        function typeWriter() {
+            if (lineIndex < lines.length) {
+                if (charIndex < lines[lineIndex].length) {
+                    document.getElementById("typewriter").innerHTML += lines[lineIndex].charAt(charIndex);
+                    charIndex++;
+                    scrollToBottom();
+                    setTimeout(typeWriter, speed);
+                } else {
+                    document.getElementById("typewriter").innerHTML += '</p><p style="margin-block-end:0; margin-block-start:0">';
+                    charIndex = 0;
+                    lineIndex++;
+                    setTimeout(typeWriter, speed);
+                }
+            }
+        }
+
+        function scrollToBottom() {
+            const typewriterDiv = document.getElementById("typewriter");
+            typewriterDiv.scrollTop = typewriterDiv.scrollHeight;
+        }
+
+        typeWriter();
+    }
+});
+
+
+
+

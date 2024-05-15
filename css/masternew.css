@@ -162,7 +162,7 @@ body {
 /* -----------  NavBar ---------------- */
 .navbar {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 8rem 1fr;
     overflow: hidden;
     z-index: 20;
     width: 100%;

@@ -47,9 +47,9 @@ input:-internal-autofill-selected,
 .contact-form button {
     width: 7rem;
     color: var(--text-color);
-    border: var(--text-color) solid 1px;
+    border: var(--text-color) solid 1.5px;
     border-radius: 10px;
-    background-color: var(--object-color);
+    background-color: var(--background-color);
 }
 
 @media screen and (max-width: 760px) {

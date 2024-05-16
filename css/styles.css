@@ -131,7 +131,7 @@ body {
 .nav-link {
     text-decoration: none;
     color: var(--text-color); 
-    font-family: "Garamond", sans-serif;
+    font-family: "Poppins", sans-serif;
     text-align: center;
     padding: 20px;
     padding-bottom: 2vh;
@@ -153,6 +153,11 @@ body {
     cursor: pointer;
 }
 
+.main-content {
+    padding-top: 60px;
+    min-height: calc(92vh - 6vw);
+}
+
 .medium-image {
     border-radius: 3%;
     overflow: hidden;
@@ -166,11 +171,6 @@ body {
 
 .right-aligned {
     text-align: right;
-}
-
-.main-content {
-    min-height: calc(95vh - calc(100vw / 10));
-    padding-top: 60px; 
 }
 
 .spacing {

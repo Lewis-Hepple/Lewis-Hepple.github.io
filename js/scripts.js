@@ -1,6 +1,6 @@
 //---------- Logo Hovers ------
 document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.icon-group img').forEach(img => {
+    document.querySelectorAll('.icon-group img, .work-icon-group img').forEach(img => {
         img.addEventListener('mouseover', () => {
             console.log("mousover");
             const tooltip = document.createElement('div');

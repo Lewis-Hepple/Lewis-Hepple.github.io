@@ -32,6 +32,12 @@
 
 .work-icon-group img {
     width: 50px;
+
+}
+
+.work-icon-group img:hover {
+    width: 60px;
+    transform: translate(-5px, -5px);
 }
 
 .hidden-left {
@@ -94,6 +100,11 @@
     .work-icon-group img {
         width: 8vw;
         max-width: 50px;
+    }
+    .work-icon-group img:hover {
+        width: 8.5vw;
+        max-width: 60px;
+        transform: translate(0.2vw, 0.2vw);
     }
     
 }

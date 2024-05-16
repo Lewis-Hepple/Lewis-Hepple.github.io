@@ -1,11 +1,16 @@
+// ---------- Nav Menu -----------------
+
+function toggleMenu() {
+    const navLinks = document.getElementById('navMenu');
+    navLinks.classList.toggle('active');
+}
+
 // ----------- Theme Toggle Button ------------------------
 function toggleTheme() {
     var body = document.body;
-    
-    
     // Save the theme preference
-    if (body.classList.contains('dark-theme')) {
-        body.classList.remove('dark-theme');
+    if (body.classList.contains('dark-theme1')) {
+        body.classList.remove('dark-theme1');
         body.classList.add("dark-theme2")
         localStorage.setItem('theme', "2");
     } else if (body.classList.contains('dark-theme2')) {
@@ -14,35 +19,23 @@ function toggleTheme() {
         localStorage.setItem('theme', "3");
     } else if (body.classList.contains('dark-theme3')) {
         body.classList.remove('dark-theme3');
-        body.classList.add("dark-theme4")  
-        localStorage.setItem('theme', "4");
-    } else if (body.classList.contains('dark-theme4')) {
-        body.classList.remove('dark-theme4');
-        body.classList.add("dark-theme5")
-        localStorage.setItem('theme', "5");
-    } else if (body.classList.contains('dark-theme5')) {
-        body.classList.remove('dark-theme5');
         localStorage.setItem('theme', "0");
     } else {
-        body.classList.add("dark-theme")
+        body.classList.add("dark-theme1")
         localStorage.setItem('theme', "1");
     }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+
     var savedTheme = localStorage.getItem('theme');
     if (savedTheme === "1") {
-        document.body.classList.add('dark-theme');
+        document.body.classList.add('dark-theme1');
     } else if (savedTheme === "2") {
         document.body.classList.add('dark-theme2');
     } else if (savedTheme === "3") {
         document.body.classList.add('dark-theme3');
-    } else if (savedTheme === "4") {
-        document.body.classList.add('dark-theme4');
-    } else if (savedTheme === "5") {
-        document.body.classList.add('dark-theme5');
-    } 
-
+    }
 });
 
 
@@ -51,72 +44,75 @@ document.addEventListener('DOMContentLoaded', function() {
 // ----------  Contact Me From ---------------------
 
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('emailForm').addEventListener('submit', function(e) {
-        e.preventDefault();
+    if (window.location.pathname === '/contact.html') {
+        document.getElementById('emailForm').addEventListener('submit', function(e) {
+            e.preventDefault();
 
-        var name = document.getElementById('name').value;
-        var subject = document.getElementById('subject').value;
-        var body = document.getElementById('body').value;
-        var mailto_link = 'mailto:thelewishepple@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+            var name = document.getElementById('name').value;
+            var subject = document.getElementById('subject').value;
+            var body = document.getElementById('body').value;
+            var mailto_link = 'mailto:thelewishepple@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
 
-        window.location.href = mailto_link; 
-    });
+            window.location.href = mailto_link; 
+        });
+    }
 });
 
 
 
 // --------  Work Fade In --------------
 window.addEventListener("load", function() {
-    const amazonImage = document.getElementById('amazonImage');
-    const amazonImage2 = document.getElementById('amazonImage2');
-    const amazonText = document.getElementById('amazonText');
-    const tallystoneImage = document.getElementById('tallystoneImage');
-    const tallystoneImage2 = document.getElementById('tallystoneImage2');
-    const tallystoneText = document.getElementById('tallystoneText');
+    if (window.location.pathname === '/work.html') {
+        const amazonImage = document.getElementById('amazonImage');
+        const amazonImage2 = document.getElementById('amazonImage2');
+        const amazonText = document.getElementById('amazonText');
+        const tallystoneImage = document.getElementById('tallystoneImage');
+        const tallystoneImage2 = document.getElementById('tallystoneImage2');
+        const tallystoneText = document.getElementById('tallystoneText');
 
-    function revealOnScroll() {
-        var windowHeight = window.innerHeight / 1.5 + window.scrollY;
-        var elementTopAmazon = $('#amazonImage').offset().top;
-        var elementTopTallystone = $('#tallystoneImage').offset().top;
+        function revealOnScroll() {
+            var windowHeight = window.innerHeight / 1.5 + window.scrollY;
+            var elementTopAmazon = $('#amazonImage').offset().top;
+            var elementTopTallystone = $('#tallystoneImage').offset().top;
 
-        if (elementTopAmazon < windowHeight) { 
-            amazonImage.classList.add('visible');
-            amazonImage2.classList.add('visible');
-            amazonText.classList.add('visible');
-        } else if (elementTopAmazon > windowHeight + 200) {
-            amazonImage.classList.remove('visible');
-            amazonImage2.classList.remove('visible');
-            amazonText.classList.remove('visible');
+            if (elementTopAmazon < windowHeight) { 
+                amazonImage.classList.add('visible');
+                amazonImage2.classList.add('visible');
+                amazonText.classList.add('visible');
+            } else if (elementTopAmazon > windowHeight + 200) {
+                amazonImage.classList.remove('visible');
+                amazonImage2.classList.remove('visible');
+                amazonText.classList.remove('visible');
+            }
+
+            if (elementTopTallystone < windowHeight) {
+                tallystoneImage.classList.add('visible');
+                tallystoneImage2.classList.add('visible');
+                tallystoneText.classList.add('visible');
+            } else if (elementTopTallystone > windowHeight + 200) {
+                tallystoneImage.classList.remove('visible');
+                tallystoneImage2.classList.remove('visible');
+                tallystoneText.classList.remove('visible');
+            }
+        }
+        
+
+        function handleResize() {
+            revealOnScroll();
         }
 
-        if (elementTopTallystone < windowHeight) {
-            tallystoneImage.classList.add('visible');
-            tallystoneImage2.classList.add('visible');
-            tallystoneText.classList.add('visible');
-        } else if (elementTopTallystone > windowHeight + 200) {
-            tallystoneImage.classList.remove('visible');
-            tallystoneImage2.classList.remove('visible');
-            tallystoneText.classList.remove('visible');
-        }
-    }
-    
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('resize', handleResize);
 
-    function handleResize() {
         revealOnScroll();
     }
-
-    window.addEventListener('scroll', revealOnScroll);
-    window.addEventListener('resize', handleResize);
-
-    revealOnScroll();
 });
 
 
 //* -------  Typing Effect on Landing Page -------------- */
 
 document.addEventListener("DOMContentLoaded", function() {
-    
-    if (window.location.pathname === '/index.html') {
+    if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
         fetch('files/coding.txt')
             .then(response => {
                 if (!response.ok) {
@@ -125,44 +121,99 @@ document.addEventListener("DOMContentLoaded", function() {
                 return response.text();
             })
             .then(data => {
-                const lines = data.split('\n'); 
-                startTypingEffect(lines);
+                const files = data.split('\\EOF');
+                files.forEach((fileContent, index) => {
+                    startTypingEffect(fileContent.split('\n'), index);
+                });
             })
             .catch(error => {
                 console.error('There has been an error fetching your background text', error);
             });
     }
 
-    function startTypingEffect(lines) {
-        const speed = 20; // Adjust typing speed in milliseconds
+    function startTypingEffect(lines, iter) {
         let lineIndex = 0;
         let charIndex = 0;
+        let doco;
+        let currentTransform = 0;
+        switch (iter) {
+            case 0:
+                doco = document.getElementById("typewriter0");
+                break;
+            case 1:
+                doco = document.getElementById("typewriter1");
+                break;
+            case 2:
+                doco = document.getElementById("typewriter2");
+                break;
+            case 3:
+                doco = document.getElementById("typewriter3");
+                break;
+            case 4:
+                doco = document.getElementById("typewriter4");
+                break;
+            case 5:
+                doco = document.getElementById("typewriter5");
+                break;
+            default:
+                console.warn(`No typewriter element found for iter ${iter}`);
+                return;
+        }
+
+        let parentHeight = parseFloat(getComputedStyle(doco.parentElement).height);
+        const lineHeight = parseFloat(getComputedStyle(doco).lineHeight) + parseFloat(getComputedStyle(doco).marginBlockEnd) + parseFloat(getComputedStyle(doco).marginBlockStart) + parseFloat(getComputedStyle(doco).marginBlockEnd);
 
         function typeWriter() {
             if (lineIndex < lines.length) {
                 if (charIndex < lines[lineIndex].length) {
-                    document.getElementById("typewriter").innerHTML += lines[lineIndex].charAt(charIndex);
+                    doco.innerHTML += lines[lineIndex].charAt(charIndex);
                     charIndex++;
-                    scrollToBottom();
-                    setTimeout(typeWriter, speed);
+                    setTimeout(typeWriter, randomInt(6,20));
                 } else {
-                    document.getElementById("typewriter").innerHTML += '</p><p style="margin-block-end:0; margin-block-start:0">';
+                    doco.innerHTML += '<p style="margin-block-end:0; margin-block-start:0">';
                     charIndex = 0;
                     lineIndex++;
-                    setTimeout(typeWriter, speed);
+                    scrollToBottom();
+                    setTimeout(typeWriter, randomInt(4,20));
                 }
+            } else {
+                lineIndex = 0;
+                charIndex = 0;
+                doco.innerHTML = '';
+                scrollToTop();
+                setTimeout(typeWriter, randomInt(6,20));
             }
         }
 
-        function scrollToBottom() {
-            const typewriterDiv = document.getElementById("typewriter");
-            typewriterDiv.scrollTop = typewriterDiv.scrollHeight;
+        function scrollToTop() {
+            currentTransform = 0;
+            doco.style.transform = `translateY(${currentTransform}px)`;
         }
 
+        function scrollToBottom() {
+            let currentHeight = lineHeight * lineIndex;
+            if (currentHeight > parentHeight - lineHeight) {
+                currentTransform -= lineHeight; // Adjust this value to sync with typing speed
+                doco.style.transform = `translateY(${currentTransform}px)`;
+            }
+        }
+
+        function randomInt(min, max) {
+            // 1 in 169 chance to do a longer pause to simulate thinking
+            if (Math.floor(Math.random() * 169) >= 168) {
+                return Math.floor(Math.random() * 100) + 200;
+            }
+            // random number between max and min
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function handleResize() {
+            parentHeight = parseFloat(getComputedStyle(doco.parentElement).height);
+        }
+
+        window.addEventListener('resize', handleResize);
         typeWriter();
     }
 });
-
-
 
 

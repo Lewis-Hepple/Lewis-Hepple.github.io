@@ -1,3 +1,1308 @@
+class Graph:
+    def __init__(self, vertices):
+        self.graph = defaultdict(list)
+        self.V = vertices
+
+    def add_edge(self, u, v):
+        self.graph[u].append(v)
+
+    def topological_sort_util(self, v, visited, stack):
+        visited[v] = True
+        for i in self.graph[v]:
+            if not visited[i]:
+                self.topological_sort_util(i, visited, stack)
+        stack.append(v)
+
+    def topological_sort(self):
+        visited = [False] * self.V
+        stack = []
+        for i in range(self.V):
+            if not visited[i]:
+                self.topological_sort_util(i, visited, stack)
+        print(stack[::-1])
+
+def kmp_search(pattern, text):
+    def compute_lps(pattern):
+        lps = [0] * len(pattern)
+        length = 0
+        i = 1
+        while i < len(pattern):
+            if pattern[i] == pattern[length]:
+                length += 1
+                lps[i] = length
+                i += 1
+            else:
+                if length != 0:
+                    length = lps[length - 1]
+                else:
+                    lps[i] = 0
+                    i += 1
+        return lps
+
+    lps = compute_lps(pattern)
+    i = j = 0
+    while i < len(text):
+        if pattern[j] == text[i]:
+            i += 1
+            j += 1
+        if j == len(pattern):
+            print(f"Found pattern at index {i - j}")
+            j = lps[j - 1]
+        elif i < len(text) and pattern[j] != text[i]:
+            if j != 0:
+                j = lps[j - 1]
+            else:
+                i += 1
+
+class Node:
+    def __init__(self, key):
+        self.key = key
+        self.left = None
+        self.right = None
+        self.height = 1
+
+class AVLTree:
+    def insert(self, root, key):
+        if not root:
+            return Node(key)
+        elif key < root.key:
+            root.left = self.insert(root.left, key)
+        else:
+            root.right = self.insert(root.right, key)
+
+        root.height = 1 + max(self.get_height(root.left), self.get_height(root.right))
+
+        balance = self.get_balance(root)
+
+        if balance > 1 and key < root.left.key:
+            return self.right_rotate(root)
+
+        if balance < -1 and key > root.right.key:
+            return self.left_rotate(root)
+
+        if balance > 1 and key > root.left.key:
+            root.left = self.left_rotate(root.left)
+            return self.right_rotate(root)
+
+        if balance < -1 and key < root.right.key:
+            root.right = self.right_rotate(root.right)
+            return self.left_rotate(root)
+
+        return root
+
+    def left_rotate(self, z):
+        y = z.right
+        T2 = y.left
+        y.left = z
+        z.right = T2
+        z.height = 1 + max(self.get_height(z.left), self.get_height(z.right))
+        y.height = 1 + max(self.get_height(y.left), self.get_height(y.right))
+        return y
+
+    def right_rotate(self, z):
+        y = z.left
+        T3 = y.right
+        y.right = z
+        z.left = T3
+        z.height = 1 + max(self.get_height(z.left), self.get_height(z.right))
+        y.height = 1 + max(self.get_height(y.left), self.get_height(y.right))
+        return y
+
+    def get_height(self, root):
+        if not root:
+            return 0
+        return root.height
+
+    def get_balance(self, root):
+        if not root:
+            return 0
+        return self.get_height(root.left) - self.get_height(root.right)
+
+    def pre_order(self, root):
+        if not root:
+            return
+        print(f"{root.key} ", end="")
+        self.pre_order(root.left)
+        self.pre_order(root.right)
+
+def merge_sort(arr):
+    if len(arr) > 1:
+        mid = len(arr) // 2
+        left_half = arr[:mid]
+        right_half = arr[mid:]
+
+        merge_sort(left_half)
+        merge_sort(right_half)
+
+        i = j = k = 0
+
+        while i < len(left_half) and j < len(right_half):
+            if left_half[i] < right_half[j]:
+                arr[k] = left_half[i]
+                i += 1
+            else:
+                arr[k] = right_half[j]
+                j += 1
+            k += 1
+
+        while i < len(left_half):
+            arr[k] = left_half[i]
+            i += 1
+            k += 1
+
+        while j < len(right_half):
+            arr[k] = right_half[j]
+            j += 1
+            k += 1
+
+def quick_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    else:
+        pivot = arr[len(arr) // 2]
+        left = [x for x in arr if x < pivot]
+        middle = [x for x in arr if x == pivot]
+        right = [x for x in arr if x > pivot]
+        return quick_sort(left) + middle + quick_sort(right)
+
+def dfs(graph, start):
+    visited, stack = set(), [start]
+    while stack:
+        vertex = stack.pop()
+        if vertex not in visited:
+            visited.add(vertex)
+            stack.extend(set(graph[vertex]) - visited)
+    return visited
+
+def bfs(graph, start):
+    visited, queue = set(), deque([start])
+    while queue:
+        vertex = queue.popleft()
+        if vertex not in visited:
+            visited.add(vertex)
+            queue.extend(set(graph[vertex]) - visited)
+    return visited
+
+class TreeNode:
+    def __init__(self, value=0, left=None, right=None):
+        self.value = value
+        self.left = left
+        self.right = right
+
+    def inorder_traversal(root):
+        return inorder_traversal(root.left) + [root.value] + inorder_traversal(root.right) if root else []
+
+    def preorder_traversal(root):
+        return [root.value] + preorder_traversal(root.left) + preorder_traversal(root.right) if root else []
+
+    def postorder_traversal(root):
+        return postorder_traversal(root.left) + postorder_traversal(root.right) + [root.value] if root else []
+
+def dijkstra(graph, start):
+    pq = [(0, start)]
+    dist = {start: 0}
+    while pq:
+        current_distance, current_vertex = heapq.heappop(pq)
+        if current_distance > dist[current_vertex]:
+            continue
+        for neighbor, weight in graph[current_vertex].items():
+            distance = current_distance + weight
+            if distance < dist.get(neighbor, float('inf')):
+                dist[neighbor] = distance
+                heapq.heappush(pq, (distance, neighbor))
+    return dist
+
+def gradient_descent(func, grad, start, learning_rate, max_iters):
+    x = start
+    for _ in range(max_iters):
+        grad_val = grad(x)
+        x = x - learning_rate * grad_val
+        if abs(grad_val) < 1e-6:  # convergence criterion
+            break
+    return x
+
+def trapByArrayBins(height):
+    if not height:
+        return 0
+    
+    left, right = 0, len(height) - 1
+    left_max, right_max = height[left], height[right]
+    water_trapped = 0
+    
+    while left < right:
+        if left_max < right_max:
+            left += 1
+            left_max = max(left_max, height[left])
+            water_trapped += left_max - height[left]
+        else:
+            right -= 1
+            right_max = max(right_max, height[right])
+            water_trapped += right_max - height[right]
+    
+    return water_trapped
+
+def maxSlidingWindow(nums, k):
+    if not nums:
+        return []
+    
+    deq = deque()
+    result = []
+    
+    for i in range(len(nums)):
+        # Remove elements not within the sliding window
+        if deq and deq[0] == i - k:
+            deq.popleft()
+        
+        # Remove elements smaller than the current element
+        while deq and nums[deq[-1]] < nums[i]:
+            deq.pop()
+        
+        deq.append(i)
+        
+        # The first element in deque is the largest element in the current sliding window
+        if i >= k - 1:
+            result.append(nums[deq[0]])
+    
+    return result
+\EOF
+function toggleTheme() {
+    var body = document.body;
+    // Save the theme preference
+    if (body.classList.contains('dark-theme')) {
+        body.classList.remove('dark-theme');
+        body.classList.add("dark-theme2")
+        localStorage.setItem('theme', "2");
+    } else if (body.classList.contains('dark-theme2')) {
+        body.classList.remove('dark-theme2');
+        body.classList.add("dark-theme3")
+        localStorage.setItem('theme', "3");
+    } else if (body.classList.contains('dark-theme3')) {
+        body.classList.remove('dark-theme3');
+        body.classList.add("dark-theme4")  
+        localStorage.setItem('theme', "4");
+    } else if (body.classList.contains('dark-theme4')) {
+        body.classList.remove('dark-theme4');
+        body.classList.add("dark-theme5")
+        localStorage.setItem('theme', "5");
+    } else if (body.classList.contains('dark-theme5')) {
+        body.classList.remove('dark-theme5');
+        localStorage.setItem('theme', "0");
+    } else {
+        body.classList.add("dark-theme")
+        localStorage.setItem('theme', "1");
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    if (window.location.pathname === '/skills.html') {
+        var savedTheme = localStorage.getItem('theme');
+        if (savedTheme === "1") {
+            document.body.classList.add('dark-theme');
+        } else if (savedTheme === "2") {
+            document.body.classList.add('dark-theme2');
+        } else if (savedTheme === "3") {
+            document.body.classList.add('dark-theme3');
+        } else if (savedTheme === "4") {
+            document.body.classList.add('dark-theme4');
+        } else if (savedTheme === "5") {
+            document.body.classList.add('dark-theme5');
+        } 
+    }
+
+});
+
+
+
+
+// ----------  Contact Me From ---------------------
+
+document.addEventListener('DOMContentLoaded', function() {
+    if (window.location.pathname === '/contact.html') {
+        document.getElementById('emailForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            var name = document.getElementById('name').value;
+            var subject = document.getElementById('subject').value;
+            var body = document.getElementById('body').value;
+            var mailto_link = 'mailto:thelewishepple@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+
+            window.location.href = mailto_link; 
+        });
+    }
+});
+
+
+
+// --------  Work Fade In --------------
+window.addEventListener("load", function() {
+    if (window.location.pathname === '/work.html') {
+        const amazonImage = document.getElementById('amazonImage');
+        const amazonImage2 = document.getElementById('amazonImage2');
+        const amazonText = document.getElementById('amazonText');
+        const tallystoneImage = document.getElementById('tallystoneImage');
+        const tallystoneImage2 = document.getElementById('tallystoneImage2');
+        const tallystoneText = document.getElementById('tallystoneText');
+
+        function revealOnScroll() {
+            var windowHeight = window.innerHeight / 1.5 + window.scrollY;
+            var elementTopAmazon = $('#amazonImage').offset().top;
+            var elementTopTallystone = $('#tallystoneImage').offset().top;
+
+            if (elementTopAmazon < windowHeight) { 
+                amazonImage.classList.add('visible');
+                amazonImage2.classList.add('visible');
+                amazonText.classList.add('visible');
+            } else if (elementTopAmazon > windowHeight + 200) {
+                amazonImage.classList.remove('visible');
+                amazonImage2.classList.remove('visible');
+                amazonText.classList.remove('visible');
+            }
+
+            if (elementTopTallystone < windowHeight) {
+                tallystoneImage.classList.add('visible');
+                tallystoneImage2.classList.add('visible');
+                tallystoneText.classList.add('visible');
+            } else if (elementTopTallystone > windowHeight + 200) {
+                tallystoneImage.classList.remove('visible');
+                tallystoneImage2.classList.remove('visible');
+                tallystoneText.classList.remove('visible');
+            }
+        }
+        
+
+        function handleResize() {
+            revealOnScroll();
+        }
+
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('resize', handleResize);
+
+        revealOnScroll();
+    }
+});
+
+
+//* -------  Typing Effect on Landing Page -------------- */
+
+document.addEventListener("DOMContentLoaded", function() {
+    if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+        fetch('files/coding.txt')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.text();
+            })
+            .then(data => {
+                const files = data.split('\\E0F');
+                console.log(files);
+                files.forEach((fileContent, index) => {
+                    startTypingEffect(fileContent.split('\n'), index);
+                });
+            })
+            .catch(error => {
+                console.error('There has been an error fetching your background text', error);
+            });
+    }
+
+    function startTypingEffect(lines, iter) {
+        let lineIndex = 0;
+        let charIndex = 0;
+        let doco;
+        let currentTransform = 0;
+        switch (iter) {
+            case 0:
+                doco = document.getElementById("typewriter0");
+                
+                break;
+            case 1:
+                doco = document.getElementById("typewriter1");
+                break;
+            case 2:
+                doco = document.getElementById("typewriter2");
+                break;
+            case 3:
+                doco = document.getElementById("typewriter3");
+                break;
+            case 4:
+                doco = document.getElementById("typewriter4");
+                break;
+            case 5:
+                doco = document.getElementById("typewriter5");
+                break;
+            default:
+                console.warn(`No typewriter element found for iter ${iter}`);
+                return;
+        }
+
+        const parentHeight = parseFloat(getComputedStyle(doco.parentElement).height);
+        const lineHeight = parseFloat(getComputedStyle(doco).lineHeight) + parseFloat(getComputedStyle(doco).marginBlockEnd) + parseFloat(getComputedStyle(doco).marginBlockStart) + parseFloat(getComputedStyle(doco).marginBlockEnd);
+        console.log(parentHeight);
+        function typeWriter() {
+            if (lineIndex < lines.length) {
+                if (charIndex < lines[lineIndex].length) {
+                    doco.innerHTML += lines[lineIndex].charAt(charIndex);
+                    charIndex++;
+                    setTimeout(typeWriter, randomInt(6,20));
+                } else {
+                    doco.innerHTML += '<p style="margin-block-end:0; margin-block-start:0">';
+                    charIndex = 0;
+                    lineIndex++;
+                    scrollToBottom(doco);
+                    setTimeout(typeWriter, randomInt(4,20));
+                }
+                
+            }
+        }
+
+        function scrollToBottom(doco) {
+            let currentHeight = lineHeight * lineIndex;
+            if (currentHeight > parentHeight - lineHeight) {
+                currentTransform -= lineHeight; // Adjust this value to sync with typing speed
+                doco.style.transform = `translateY(${currentTransform}px)`;
+            }
+        }
+
+        function randomInt(min, max) {
+            if (Math.floor(Math.random() * (20)) > 19) {
+                return floor(Math.random() * 200) + 200;
+            }
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        typeWriter();
+    }
+});
+
+
+
+\EOF
+FUNC_ATTR_CONST
+{
+  if (num == 0 || exponent == 0) {
+    return num;
+  }
+  assert(base);
+  uvarnumber_T exp = exponent;
+  float_T p_base = (float_T)base;
+  float_T ret = num;
+  while (exp) {
+    if (exp & 1) {
+      if (exponent_negative) {
+        ret /= p_base;
+      } else {
+        ret *= p_base;
+      }
+    }
+    exp >>= 1;
+    p_base *= p_base;
+  }
+  return ret;
+}
+LexExprToken viml_pexpr_next_token(ParserState *const pstate, const int flags)
+  FUNC_ATTR_WARN_UNUSED_RESULT FUNC_ATTR_NONNULL_ALL
+{
+  LexExprToken ret = {
+    .type = kExprLexInvalid,
+    .start = pstate->pos,
+  };
+  ParserLine pline;
+  if (!viml_parser_get_remaining_line(pstate, &pline)) {
+    ret.type = kExprLexEOC;
+    return ret;
+  }
+  if (pline.size <= 0) {
+    ret.len = 0;
+    ret.type = kExprLexEOC;
+    goto viml_pexpr_next_token_adv_return;
+  }
+  ret.len = 1;
+  const uint8_t schar = (uint8_t)pline.data[0];
+#define GET_CCS(ret, pline) \
+  do { \
+    if (ret.len < pline.size \
+        && strchr("?#", pline.data[ret.len]) != NULL) { \
+      ret.data.cmp.ccs = \
+        (ExprCaseCompareStrategy)pline.data[ret.len]; \
+      ret.len++; \
+    } else { \
+      ret.data.cmp.ccs = kCCStrategyUseOption; \
+    } \
+  } while (0)
+  switch (schar) {
+  // Paired brackets.
+#define BRACKET(typ, opning, clsing) \
+  case opning: \
+  case clsing: { \
+      ret.type = typ; \
+      ret.data.brc.closing = (schar == clsing); \
+      break; \
+  }
+  BRACKET(kExprLexParenthesis, '(', ')')
+  BRACKET(kExprLexBracket, '[', ']')
+  BRACKET(kExprLexFigureBrace, '{', '}')
+#undef BRACKET
+
+  // Single character tokens without data.
+#define CHAR(typ, ch) \
+  case ch: { \
+      ret.type = typ; \
+      break; \
+  }
+  CHAR(kExprLexQuestion, '?')
+  CHAR(kExprLexColon, ':')
+  CHAR(kExprLexComma, ',')
+#undef CHAR
+
+  // Multiplication/division/modulo.
+#define MUL(mul_type, ch) \
+  case ch: { \
+      ret.type = kExprLexMultiplication; \
+      ret.data.mul.type = mul_type; \
+      break; \
+  }
+  MUL(kExprLexMulMul, '*')
+  MUL(kExprLexMulDiv, '/')
+  MUL(kExprLexMulMod, '%')
+#undef MUL
+
+#define CHARREG(typ, cond) \
+  do { \
+    ret.type = typ; \
+    for (; (ret.len < pline.size \
+            && cond(pline.data[ret.len])) \
+         ; ret.len++) { \
+    } \
+  } while (0)
+
+  // Whitespace.
+  case ' ':
+  case TAB:
+    CHARREG(kExprLexSpacing, ascii_iswhite);
+    break;
+
+  // Control character, except for NUL, NL and TAB.
+  case Ctrl_A:
+  case Ctrl_Y:
+  case Ctrl_Z:
+#define ISCTRL(schar) (schar < ' ')
+    CHARREG(kExprLexInvalid, ISCTRL);
+    ret.data.err.type = kExprLexSpacing;
+    ret.data.err.msg =
+      _("E15: Invalid control character present in input: %.*s");
+    break;
+#undef ISCTRL
+  case '9': {
+    ret.data.num.is_float = false;
+    ret.data.num.base = 10;
+    size_t frac_start = 0;
+    size_t exp_start = 0;
+    size_t frac_end = 0;
+    bool exp_negative = false;
+    CHARREG(kExprLexNumber, ascii_isdigit);
+    if (flags & kELFlagAllowFloat) {
+      const LexExprToken non_float_ret = ret;
+      if (pline.size > ret.len + 1
+          && pline.data[ret.len] == '.'
+          && ascii_isdigit(pline.data[ret.len + 1])) {
+        ret.len++;
+        frac_start = ret.len;
+        frac_end = ret.len;
+        ret.data.num.is_float = true;
+        for (; ret.len < pline.size && ascii_isdigit(pline.data[ret.len])
+             ; ret.len++) {
+          // A small optimization: trailing zeroes in fractional part do not
+          // add anything to significand, so it is useless to include them in
+          // frac_end.
+          if (pline.data[ret.len] != '0') {
+            frac_end = ret.len + 1;
+          }
+        }
+        if (pline.size > ret.len + 1
+            && (pline.data[ret.len] == 'e'
+                || pline.data[ret.len] == 'E')
+            && ((pline.size > ret.len + 2
+                 && (pline.data[ret.len + 1] == '+'
+                     || pline.data[ret.len + 1] == '-')
+                 && ascii_isdigit(pline.data[ret.len + 2]))
+                || ascii_isdigit(pline.data[ret.len + 1]))) {
+          ret.len++;
+          if (pline.data[ret.len] == '+'
+              || (exp_negative = (pline.data[ret.len] == '-'))) {
+            ret.len++;
+          }
+          exp_start = ret.len;
+          CHARREG(kExprLexNumber, ascii_isdigit);
+        }
+      }
+      if (pline.size > ret.len
+          && (pline.data[ret.len] == '.'
+              || ASCII_ISALPHA(pline.data[ret.len]))) {
+        ret = non_float_ret;
+      }
+    }
+    // TODO(ZyX-I): detect overflows
+    if (ret.data.num.is_float) {
+      // Vim used to use string2float here which in turn uses strtod(). There
+      // are two problems with this approach:
+      float_T significand_part = 0;
+      uvarnumber_T exp_part = 0;
+      const size_t frac_size = frac_end - frac_start;
+      for (size_t i = 0; i < frac_end; i++) {
+        if (i == frac_start - 1) {
+          continue;
+        }
+        significand_part = significand_part * 10 + (pline.data[i] - '0');
+      }
+      if (exp_start) {
+        vim_str2nr(pline.data + exp_start, NULL, NULL, 0, NULL, &exp_part,
+                   (int)(ret.len - exp_start), false, NULL);
+      }
+      if (exp_negative) {
+        exp_part += frac_size;
+      } else {
+        if (exp_part < frac_size) {
+          exp_negative = true;
+          exp_part = frac_size - exp_part;
+        } else {
+          exp_part -= frac_size;
+        }
+      }
+      ret.data.num.val.floating = scale_number(significand_part, 10, exp_part,
+                                               exp_negative);
+    } else {
+      int len;
+      int prep;
+      vim_str2nr(pline.data, &prep, &len, STR2NR_ALL, NULL,
+                 &ret.data.num.val.integer, (int)pline.size, false, NULL);
+      ret.len = (size_t)len;
+      const uint8_t bases[] = {
+        [0] = 10,
+        ['0'] = 8,
+        ['x'] = 16, ['X'] = 16,
+        ['b'] = 2, ['B'] = 2,
+      };
+      ret.data.num.base = bases[prep];
+    }
+    break;
+  }
+  // Minus sign, arrow from lambdas or augmented assignment.
+  case '-': {
+    if (pline.size > 1 && pline.data[1] == '>') {
+      ret.len++;
+      ret.type = kExprLexArrow;
+    } else if (pline.size > 1 && pline.data[1] == '=') {
+      ret.len++;
+      ret.type = kExprLexAssignment;
+      ret.data.ass.type = kExprAsgnSubtract;
+    } else {
+      ret.type = kExprLexMinus;
+    }
+    break;
+  }
+void viml_pexpr_free_ast(ExprAST ast)
+{
+  ExprASTStack ast_stack;
+  kvi_init(ast_stack);
+  kvi_push(ast_stack, &ast.root);
+  while (kv_size(ast_stack)) {
+    ExprASTNode **const cur_node = kv_last(ast_stack);
+#ifndef NDEBUG
+    // Explicitly check for AST recursiveness.
+    for (size_t i = 0; i < kv_size(ast_stack) - 1; i++) {
+      assert(*kv_A(ast_stack, i) != *cur_node);
+    }
+#endif
+    if (*cur_node == NULL) {
+      assert(kv_size(ast_stack) == 1);
+      kv_drop(ast_stack, 1);
+    } else if ((*cur_node)->children != NULL) {
+#ifndef NDEBUG
+      const uint8_t maxchildren = node_maxchildren[(*cur_node)->type];
+      assert(maxchildren > 0);
+      assert(maxchildren <= 2);
+      assert(maxchildren == 1
+             ? (*cur_node)->children->next == NULL
+             : ((*cur_node)->children->next == NULL
+                || (*cur_node)->children->next->next == NULL));
+#endif
+      kvi_push(ast_stack, &(*cur_node)->children);
+    } else if ((*cur_node)->next != NULL) {
+      kvi_push(ast_stack, &(*cur_node)->next);
+    } else if (*cur_node != NULL) {
+      kv_drop(ast_stack, 1);
+      switch ((*cur_node)->type) {
+      case kExprNodeDoubleQuotedString:
+      case kExprNodeSingleQuotedString:
+        xfree((*cur_node)->data.str.value);
+        break;
+      }
+      break;
+    case kEPTSingleAssignment:
+    case kEPTAssignment:
+      if (want_node == kENodeValue
+          && tok_type != kExprLexBracket
+          && tok_type != kExprLexPlainIdentifier
+          && (tok_type != kExprLexFigureBrace || cur_token.data.brc.closing)
+          && !(node_is_key && tok_type == kExprLexNumber)
+          && tok_type != kExprLexEnv
+          && tok_type != kExprLexOption
+          && tok_type != kExprLexRegister) {
+        ERROR_FROM_TOKEN_AND_MSG(cur_token,
+                                 _("E15: Expected value part of assignment lvalue: %.*s"));
+        if (flags & kExprFlagsMulti && MAY_HAVE_NEXT_EXPR) {
+          goto viml_pexpr_parse_end;
+        }
+        ERROR_FROM_TOKEN_AND_MSG(cur_token,
+                                 _("E15: Expected assignment operator or subscript: %.*s"));
+        kv_drop(pt_stack, 1);
+      }
+      assert(kv_size(pt_stack));
+      break;
+    }
+    assert(kv_size(pt_stack));
+    const ExprASTParseType cur_pt = kv_last(pt_stack);
+    assert(lambda_node == NULL || cur_pt == kEPTLambdaArguments);
+\EOF
+import lombok.Getter;
+import lombok.Setter;
+import lombok.Builder;
+import javax.persistence.*;
+import java.util.Set;
+
+@Entity
+@Getter
+@Setter
+@Builder
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String username;
+    private String password;
+    private String email;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Question> questions;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Answer> answers;
+}
+
+
+@Entity
+@Getter
+@Setter
+@Builder
+public class Question {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String title;
+    private String content;
+    private LocalDateTime created;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @OneToMany(mappedBy = "question")
+    private Set<Answer> answers;
+
+    @ManyToMany
+    @JoinTable(
+        name = "question_tags",
+        joinColumns = @JoinColumn(name = "question_id"),
+        inverseJoinColumns = @JoinColumn(name = "tag_id")
+    )
+    private Set<Tag> tags;
+}
+
+@Entity
+@Getter
+@Setter
+@Builder
+public class Answer {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String content;
+    private LocalDateTime created;
+
+    @ManyToOne
+    @JoinColumn(name = "question_id")
+    private Question question;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+}
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UserRepository extends JpaRepository<User, Long> {
+}
+
+public interface QuestionRepository extends JpaRepository<Question, Long> {
+}
+
+public interface AnswerRepository extends JpaRepository<Answer, Long> {
+}
+
+public interface TagRepository extends JpaRepository<Tag, Long> {
+}
+
+@Service
+public class QuestionService {
+
+    @Autowired
+    private QuestionRepository questionRepository;
+
+    public List<Question> getAllQuestions() {
+        return questionRepository.findAll();
+    }
+
+    public Optional<Question> getQuestionById(Long id) {
+        return questionRepository.findById(id);
+    }
+
+    public Question createQuestion(Question question) {
+        return questionRepository.save(question);
+    }
+
+    public void deleteQuestion(Long id) {
+        questionRepository.deleteById(id);
+    }
+}
+
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+
+    @Bean
+    public UserDetailsService userDetailsService() {
+        UserDetails user = User.withDefaultPasswordEncoder()
+                .username("user")
+                .password("password")
+                .roles("USER")
+                .build();
+        return new InMemoryUserDetailsManager(user);
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+            .csrf().disable()
+            .authorizeRequests()
+            .antMatchers("/api/**").permitAll()
+            .anyRequest().authenticated()
+            .and()
+            .formLogin().permitAll()
+            .and()
+            .logout().permitAll();
+    }
+}
+
+
+@RestController
+@RequestMapping("/api/users")
+public class UserController {
+
+    @Autowired
+    private UserService userService;
+
+    @GetMapping
+    public List<User> getAllUsers() {
+        return userService.getAllUsers();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable Long id) {
+        Optional<User> user = userService.getUserById(id);
+        return user.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @PostMapping
+    public User createUser(@RequestBody User user) {
+        return userService.createUser(user);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+        userService.deleteUser(id);
+        return ResponseEntity.noContent().build();
+    }
+}
+
+@Service
+public class UserService {
+
+    @Autowired
+    private UserRepository userRepository;
+
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    public Optional<User> getUserById(Long id) {
+        return userRepository.findById(id);
+    }
+
+    public User createUser(User user) {
+        return userRepository.save(user);
+    }
+
+    public void deleteUser(Long id) {
+        userRepository.deleteById(id);
+    }
+}
+
+
+@RestController
+@RequestMapping("/api/questions")
+public class QuestionController {
+
+    @Autowired
+    private QuestionService questionService;
+
+    @GetMapping
+    public List<Question> getAllQuestions() {
+        return questionService.getAllQuestions();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Question> getQuestionById(@PathVariable Long id) {
+        Optional<Question> question = questionService.getQuestionById(id);
+        return question.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @PostMapping
+    public Question createQuestion(@RequestBody Question question) {
+        return questionService.createQuestion(question);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteQuestion(@PathVariable Long id) {
+        questionService.deleteQuestion(id);
+        return ResponseEntity.noContent().build();
+    }
+}
+
+\EOF
+
+data UserState = UserState {
+    lastId :: Id,
+    positionMap :: Map.Map Id (SourcePos, SourcePos),
+    parseNotes :: [ParseNote],
+    hereDocMap :: Map.Map Id [Token],
+    pendingHereDocs :: [HereDocContext]
+}
+initialUserState = UserState {
+    lastId = Id $ -1,
+    positionMap = Map.empty,
+    parseNotes = [],
+    hereDocMap = Map.empty,
+    pendingHereDocs = []
+}
+
+codeForParseNote (ParseNote _ _ _ code _) = code
+
+getLastId = lastId <$> getState
+
+getNextIdBetween startPos endPos = do
+    state <- getState
+    let newId = incId (lastId state)
+    let newMap = Map.insert newId (startPos, endPos) (positionMap state)
+    putState $ state {
+        lastId = newId,
+        positionMap = newMap
+    }
+    return newId
+  where incId (Id n) = Id $ n+1
+
+getNextIdSpanningTokens startTok endTok = do
+    (start, _) <- getSpanForId (getId startTok)
+    (_, end)   <- getSpanForId (getId endTok)
+    getNextIdBetween start end
+
+-- Get an ID starting from the first token of the list, and ending after the last
+getNextIdSpanningTokenList list =
+    case list of
+    [] -> do
+        pos <- getPosition
+        getNextIdBetween pos pos
+    (h:_) ->
+        getNextIdSpanningTokens h (last list)
+
+-- Get the span covered by an id
+getSpanForId :: Monad m => Id -> SCParser m (SourcePos, SourcePos)
+getSpanForId id =
+    Map.findWithDefault (error $ pleaseReport "no parser span for id") id <$>
+        getMap
+
+-- Create a new id with the same span as an existing one
+getNewIdFor :: Monad m => Id -> SCParser m Id
+getNewIdFor id = getSpanForId id >>= uncurry getNextIdBetween
+
+data IncompleteInterval = IncompleteInterval SourcePos
+
+startSpan = IncompleteInterval <$> getPosition
+
+endSpan (IncompleteInterval start) = do
+    endPos <- getPosition
+    getNextIdBetween start endPos
+
+getSpanPositionsFor m = do
+    start <- getPosition
+    m
+    end <- getPosition
+    return (start, end)
+
+addToHereDocMap id list = do
+    state <- getState
+    let map = hereDocMap state
+    putState $ state {
+        hereDocMap = Map.insert id list map
+    }
+
+addPendingHereDoc id d q str = do
+    state <- getState
+    context <- getCurrentContexts
+    let docs = pendingHereDocs state
+    putState $ state {
+        pendingHereDocs = HereDocPending id d q str context : docs
+    }
+
+popPendingHereDocs = do
+    state <- getState
+    let pending = pendingHereDocs state
+    putState $ state {
+        pendingHereDocs = []
+    }
+    return . reverse $ pendingHereDocs state
+
+getMap = positionMap <$> getState
+getParseNotes = parseNotes <$> getState
+
+addParseNote n = do
+    irrelevant <- shouldIgnoreCode (codeForParseNote n)
+    unless irrelevant $ do
+        state <- getState
+        putState $ state {
+            parseNotes = n : parseNotes state
+        }
+
+ignoreProblemsOf p = do
+    systemState <- lift . lift $ Ms.get
+    p <* (lift . lift . Ms.put $ systemState)
+
+shouldIgnoreCode code = do
+    context <- getCurrentContexts
+    checkSourced <- Mr.asks checkSourced
+    return $ any (contextItemDisablesCode checkSourced code) context
+
+-- Does this item on the context stack disable warnings for 'code'?
+contextItemDisablesCode :: Bool -> Integer -> Context -> Bool
+contextItemDisablesCode alsoCheckSourced code = disabling alsoCheckSourced
+  where
+    disabling checkSourced item =
+        case item of
+            ContextAnnotation list -> any disabling' list
+            ContextSource _ -> not $ checkSourced
+            _ -> False
+    disabling' (DisableComment n m) = code >= n && code < m
+    disabling' _ = False
+
+
+
+getCurrentAnnotations includeSource =
+    concatMap get . takeWhile (not . isBoundary) <$> getCurrentContexts
+  where
+    get (ContextAnnotation list) = list
+    get _ = []
+    isBoundary (ContextSource _) = not includeSource
+    isBoundary _ = False
+
+
+shouldFollow file = do
+    context <- getCurrentContexts
+    if any isThisFile context
+      then return False
+      else
+        if length (filter isSource context) >= 100
+          then do
+            parseProblem ErrorC 1092 "Stopping at 100 'source' frames :O"
+            return False
+          else
+            return True
+  where
+    isSource (ContextSource _) = True
+    isSource _ = False
+    isThisFile (ContextSource name) | name == file = True
+    isThisFile _= False
+
+getSourceOverride = do
+    context <- getCurrentContexts
+    return . msum . map findFile $ takeWhile isSameFile context
+  where
+    isSameFile (ContextSource _) = False
+    isSameFile _ = True
+
+    findFile (ContextAnnotation list) = msum $ map getFile list
+    findFile _ = Nothing
+    getFile (SourceOverride str) = Just str
+    getFile _ = Nothing
+
+-- Store potential parse problems outside of parsec
+
+data SystemState = SystemState {
+    contextStack :: [Context],
+    parseProblems :: [ParseNote]
+}
+initialSystemState = SystemState {
+    contextStack = [],
+    parseProblems = []
+}
+
+data Environment m = Environment {
+    systemInterface :: SystemInterface m,
+    checkSourced :: Bool,
+    ignoreRC :: Bool,
+    currentFilename :: String,
+    shellTypeOverride :: Maybe Shell
+}
+
+parseProblem level code msg = do
+    pos <- getPosition
+    parseProblemAt pos level code msg
+
+setCurrentContexts c = Ms.modify (\state -> state { contextStack = c })
+getCurrentContexts = Ms.gets contextStack
+
+popContext = do
+    v <- getCurrentContexts
+    case v of
+        (a:r) -> do
+            setCurrentContexts r
+            return $ Just a
+        [] ->
+            return Nothing
+
+pushContext c = do
+    v <- getCurrentContexts
+    setCurrentContexts (c:v)
+
+parseProblemAtWithEnd start end level code msg = do
+    irrelevant <- shouldIgnoreCode code
+    unless irrelevant $
+        addParseProblem note
+  where
+    note = ParseNote start end level code msg
+
+addParseProblem note =
+    Ms.modify (\state -> state {
+        parseProblems = note:parseProblems state
+    })
+
+parseProblemAt pos = parseProblemAtWithEnd pos pos
+
+parseProblemAtId :: Monad m => Id -> Severity -> Integer -> String -> SCParser m ()
+parseProblemAtId id level code msg = do
+    (start, end) <- getSpanForId id
+    parseProblemAtWithEnd start end level code msg
+
+-- Store non-parse problems inside
+
+parseNote c l a = do
+    pos <- getPosition
+    parseNoteAt pos c l a
+
+parseNoteAt pos c l a = addParseNote $ ParseNote pos pos c l a
+parseNoteAtId id c l a = do
+    (start, end) <- getSpanForId id
+    addParseNote $ ParseNote start end c l a
+
+parseNoteAtWithEnd start end c l a = addParseNote $ ParseNote start end c l a
+
+--------- Convenient combinators
+thenSkip main follow = main <* optional follow
+
+unexpecting s p = try $
+    (try p >> fail ("Unexpected " ++ s)) <|> return ()
+
+notFollowedBy2 = unexpecting ""
+
+isFollowedBy p = (lookAhead . try $ p $> True) <|> return False
+
+reluctantlyTill p end =
+    (lookAhead (void (try end) <|> eof) >> return []) <|> do
+        x <- p
+        more <- reluctantlyTill p end
+        return $ x:more
+      <|> return []
+
+reluctantlyTill1 p end = do
+    notFollowedBy2 end
+    x <- p
+    more <- reluctantlyTill p end
+    return $ x:more
+
+attempting rest branch =
+    (try branch >> rest) <|> rest
+
+orFail parser errorAction =
+    try parser <|> (errorAction >>= fail)
+
+    checkTrailingOp x = sequence_ $ do
+        (T_Literal id str) <- getTrailingUnquotedLiteral x
+        trailingOp <- find (`isSuffixOf` str) binaryTestOps
+        return $ parseProblemAtId id ErrorC 1108 $
+            "You need a space before and after the " ++ trailingOp ++ " ."
+
+    readCondGroup = do
+        start <- startSpan
+        pos <- getPosition
+        lparen <- try $ readRegularOrEscaped (string "(")
+        when (single && lparen == "(") $
+            singleWarning pos
+        when (not single && lparen == "\\(") $
+            doubleWarning pos
+        condSpacing single
+        x <- readCondContents
+        cpos <- getPosition
+        rparen <- readRegularOrEscaped (string ")")
+        id <- endSpan start
+        condSpacing single
+        when (single && rparen == ")") $
+            singleWarning cpos
+        when (not single && rparen == "\\)") $
+            doubleWarning cpos
+        return $ TC_Group id typ x
+
+      where
+        singleWarning pos =
+            parseProblemAt pos ErrorC 1028 "In [..] you have to escape \\( \\) or preferably combine [..] expressions."
+        doubleWarning pos =
+            parseProblemAt pos ErrorC 1029 "In [[..]] you shouldn't escape ( or )."
+
+
+    -- Currently a bit of a hack since parsing rules are obscure
+    regexOperatorAhead = lookAhead (do
+        try (string "=~") <|> try (string "~=")
+        return True)
+          <|> return False
+
+return []
+runTests = $quickCheckAll
+\EOF
 #define PORT 8080
 #define BUFFER_SIZE 1024
 #define MAX_CLIENTS 10
@@ -14,7 +1319,8 @@ int main() {
     if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) == 0) {
         error("Socket creation error");
     }
-    if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt))) {
+    if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR |
+        SO_REUSEPORT, &opt, sizeof(opt))) {
         error("setsockopt error");
     }
     address.sin_family = AF_INET;
@@ -28,7 +1334,8 @@ int main() {
     }
     printf("Server listening on port %d\n", PORT);
     while (1) {
-        if ((new_socket = accept(server_fd, (struct sockaddr *)&address, (socklen_t*)&addrlen)) < 0) {
+        if ((new_socket = accept(server_fd, (struct sockaddr *)
+            &address, (socklen_t*)&addrlen)) < 0) {
             error("Accept error");
         }
         printf("New connection accepted\n");

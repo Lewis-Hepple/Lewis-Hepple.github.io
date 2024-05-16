@@ -1,55 +1,14 @@
 /* -----------  Generic Text + Containers ---------------- */
-
 :root {
-    --background-color: rgb(114 96 160);
-    --background-color2: #efcdcd;
-    --text-color: #efcdcd;
-    --text-color2: #0f2028;
-    --link-color: #C6A1CF;
+--background-color: #27768b;
+--background-color2: #f4f4f4;
+--text-color: #f4f4f4;
+--text-color2: #025762;
+--link-color: #000000;
+--object-color: #f4f4f4;
 }
 
-body {
-    position: relative;
-    height : 100%;
-}
-
-#typewriter {
-    height: 80vh;
-}
-
-.background-text {
-    position: fixed;
-    top: 10vh;
-    left: 5vw;
-    font-size: 0.5rem; 
-    color: var(--link-color); 
-    white-space: pre; 
-    pointer-events: none;
-    z-index: -1; 
-    text-align: left; 
-    line-height: 0.8; 
-}
-
-
-body.dark-theme {
-    --background-color: #025762;
-    --background-color2: #f4f4f4;
-    --text-color: #f4f4f4;
-    --text-color2: #025762;
-    --link-color: #00d09f;
-    --object-color: #f4f4f4;
-}
-
-
-body.dark-theme2 {
-    --background-color: #FBE9D0;
-    --background-color2: #b08473;
-    --text-color: #244855;
-    --text-color2: rgba(15, 16, 20, 1);
-    --link-color: #E64833;
-}
-
-body.dark-theme3 {
+body.dark-theme1 {
     --background-color2: #EBE9E1;
     --background-color: #a7391d;
     --text-color: #EBE9E1;
@@ -57,7 +16,7 @@ body.dark-theme3 {
     --link-color: #EFB11D;
 }
 
-body.dark-theme4 {
+body.dark-theme2 {
     --background-color2: #697184;
     --background-color: #D8CFD0;
     --text-color: #413F3D;
@@ -67,13 +26,13 @@ body.dark-theme4 {
 
 }
 
-body.dark-theme5 {
+body.dark-theme3 {
     --background-color2: #FAF6F2;
     --background-color: #DED1BD;
     --text-color: #683B2B;
     --text-color2: #683B2B;
     --link-color: #B08401;
-    --object-color: #556774;
+    --object-color: #683B2B;
 }
 
 
@@ -184,6 +143,16 @@ body {
     border-bottom: 1px ridge var(--link-color) ;
 }
 
+.menu-button {
+    display: none;
+    background: var(--background-color);
+    border: none;
+    color: var(--text-color);
+    font-size: 2rem;
+    padding: 1rem;
+    cursor: pointer;
+}
+
 .medium-image {
     border-radius: 3%;
     overflow: hidden;
@@ -257,6 +226,13 @@ figure {
     padding: 0;
 }
 
+@media screen and (max-width: 1100px) and (min-width: 632px) {
+    .hide-responsive {
+        display: none;
+    }
+}
+
+
 @media screen and (max-width: 1100px) {
 
     /* -------  Responsive for Education Page Grids -> Flex ------------- */
@@ -304,6 +280,7 @@ figure {
 
 
 
+
 @media screen and (min-width: 632px) {
     .navbar-content {
         justify-content: flex-end;
@@ -314,16 +291,42 @@ figure {
 }
 
 @media screen and (max-width: 632px) {
+    .menu-button {
+        display: block;
+        grid-column: 1 / -1;
+        text-align: left;
+        width: 100%;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column-reverse;
+        width: 40vw;
+        background: var(--background-color);
+        position: absolute;
+        top: 4rem;
+        left: 0;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-link {
+        text-align: left;
+        padding: 1rem 2rem;
+    }
+
     .hide-responsive-medium {
         display:none;
     }
-    .hide-responsive {
-        display: none;
-    }
+
     .nav-link {
         padding: 8px;
     }
     .navbar-content {
-        justify-content: center;
+        flex-direction: column;
+        margin-left: 10px;
+        width: fit-content;
     }
 }

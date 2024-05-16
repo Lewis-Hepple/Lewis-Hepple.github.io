@@ -12,8 +12,9 @@
         <title>Lewis Hepple</title>
     </head>
     <body>
-        <nav class="navbar sticky-top full-width">
-            <input class="theme-toggle" type="button" name="toggle" value="Light?" onclick="toggleTheme(value)">
+        <button class="menu-button" onclick="toggleMenu()">☰</button>
+        <nav class="navbar sticky-top full-width nav-links" id="navMenu">
+            <input class="theme-toggle" type="button" name="toggle" value="Theme" onclick="toggleTheme(value)">
             <div class="navbar-content center-content full-width text-small">
                 <a href="/index.html" class="nav-link">Home</a>
                 <a href="/about.html" class="nav-link">About <span class="hide-responsive">Me</span></a>
@@ -34,8 +35,6 @@
                         <div>
                             <h3 class="text-large">Integral</h3>
                         </div>                 
-                        
-                     
                         <i>
                             Software Development Consultant
                         </i>

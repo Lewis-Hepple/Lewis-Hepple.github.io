@@ -1,3 +1,59 @@
+
+.background-text {
+  position: fixed;
+  left: 5vw;
+  top: 46vh;  
+  height: 40vh; 
+  width: 20vw;
+  font-size: 0.6rem; 
+  color: var(--link-color); 
+  white-space: pre; 
+  pointer-events: none;
+  z-index: -1; 
+  text-align: left; 
+  line-height: 1.1; 
+  overflow: hidden;
+  transition: transform 0.3s linear;
+}
+
+.background-text:nth-child(2) {
+  left: 12vw;
+  top: 5vh;
+  height: 30vh;
+}
+
+.background-text:nth-child(3) {
+  left: 47vw;
+  top: 7vh;
+  height: 22vh;
+}
+
+.background-text:nth-child(4) {
+  left: 75vw;
+  top: 10vh;
+  height: 20vh;
+}
+
+.background-text:nth-child(5) {
+  left: 80vw;
+  top: 42vh;
+  height: 50vh;
+}
+
+.background-text:nth-child(6) {
+  left: 40vw;
+  top: 65vh;
+  height: 30vh;
+}
+
+.landing {
+  height: 95vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .landing-links {
   font-size: 20px;
   justify-content: center;
@@ -5,7 +61,6 @@
   display: flex;
   margin-top: 5vh;
   color: var(--text-color);
-
 }
 
 .landing-links a {
@@ -23,29 +78,74 @@
   font-size: 0.9rem;
 }
 
-figure {
-  width: 100px;
-  fill: var(--text-color);
-}
-
 .title {
   margin-top: auto;
   margin-right: auto;
   margin-bottom: auto;
   margin-left: auto;
-  font-family: 'Garamont';
+  font-family: "Poppins", sans-serif;
   color: var(--text-color);
   font-size: 5rem;
 }
 
-.sun {
-  transform: rotate(25deg);
-  top: -15rem;
-  left: -15rem;
-  max-width: 50rem;
-  min-width: 15rem;
-  width: 100%;
-  transition: all 5s;
-  -webkit-animation: solar-animation 60s linear infinite;
-  animation: solar-animation 60s linear infinite;
+@media screen and (max-width: 1000px) {
+  .title > span {
+    display: none;
+  }
+
+  .background-text {
+    left: 1vw;
+    top: 26vh;  
+    height: 75vh; 
+    width: 30vw;
+  }
+
+  .background-text:nth-child(2) {
+    display: none;
+  }
+  
+  .background-text:nth-child(3) {
+    width: 30vw;
+    left: 47vw;
+    top: 7vh;
+    height: 19vh;
+  }
+  
+  .background-text:nth-child(4) {
+    display: none;
+  }
+  
+  .background-text:nth-child(5) {
+    left: 80vw;
+    top: 42vh;
+    height: 50vh;
+  }
+  
+  .background-text:nth-child(6) {
+    left: 40vw;
+    top: 65vh;
+    height: 30vh;
+  }
+} 
+
+@media screen and (max-width: 700px) {
+  .background-text {
+    display: none;
+  }
+
+  .background-text:nth-child(1) {
+    display: block;
+    left: 2vw;
+    top: 17vh;  
+    height: 80vh; 
+    width: 50vw;
+  }
+  
+  .background-text:nth-child(3) {
+    display: block;
+    width: 30vw;
+    left: 60vw;
+    top: 10vh;
+    height: 32vh;
+  }
 }

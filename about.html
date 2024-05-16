@@ -10,13 +10,14 @@
     <title>Lewis Hepple</title>
 </head>
 <body>
-    <nav class="navbar sticky-top full-width">
-        <input class="theme-toggle" type="button" name="toggle" value="Light?" onclick="toggleTheme(value)">
-        <div class="center-content navbar-content">
+    <button class="menu-button" onclick="toggleMenu()">☰</button>
+    <nav class="navbar sticky-top full-width nav-links" id="navMenu">
+        <input class="theme-toggle" type="button" name="toggle" value="Theme" onclick="toggleTheme(value)">
+        <div class="navbar-content center-content full-width text-small">
             <a href="/index.html" class="nav-link">Home</a>
-            <a href="/about.html" class="selected-page nav-link">About<span class="hide-responsive"> Me</span></a>
+            <a href="/about.html" class="nav-link selected-page">About <span class="hide-responsive">Me</span></a>
             <a href="/work.html" class="nav-link">Work<span class="hide-responsive"> Experience</span></a>
-            <a href="/skills.html" class="nav-link">Skills<span class="hide-responsive"> & Interests</span></a>
+            <a href="/skills.html" class="nav-link">Skills<span class="hide-responsive"> + Interests</span></a>
             <a href="/education.html" class="nav-link">Education</a>
             <a href="/contact.html" class="nav-link">Contact<span class="hide-responsive"> Me</span></a>
         </div>

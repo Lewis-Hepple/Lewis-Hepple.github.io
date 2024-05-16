@@ -1,3 +1,25 @@
+//---------- Logo Hovers ------
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.icon-group img').forEach(img => {
+        img.addEventListener('mouseover', () => {
+            console.log("mousover");
+            const tooltip = document.createElement('div');
+            tooltip.className = 'tooltip';
+            tooltip.innerText = img.getAttribute('data-label');
+            document.body.appendChild(tooltip);
+
+            const rect = img.getBoundingClientRect();
+            tooltip.style.left = `${rect.left + window.scrollX + img.clientWidth / 2 - tooltip.clientWidth / 2}px`;
+            tooltip.style.top = `${rect.top + window.scrollY - tooltip.clientHeight - 10}px`;
+        });
+
+        img.addEventListener('mouseout', () => {
+            console.log("removed")
+            document.querySelector('.tooltip').remove();
+        });
+    });
+});
+
 // ---------- Nav Menu -----------------
 
 function toggleMenu() {

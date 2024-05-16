@@ -23,8 +23,46 @@
 }
 
 .icon-group img {
+  position: relative;
   height: 80px;
   width: 80px;
+  transition: height, width 0.3s ease;
+}
+
+.icon-group img:hover {
+  height: 70px;
+  width: 70px;
+}
+
+.icon-group img:hover::after {
+  content: attr(data-label);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  white-space: nowrap;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  
+}
+
+.icon-group img:hover::after {
+  opacity: 1;
+}
+
+.tooltip {
+  position: absolute;
+  background-color: var(--link-color);
+  color: var(--text-color);
+  padding: 5px 10px;
+  border-radius: 5px;
+  white-space: nowrap;
+  transition: opacity 0.3s ease;
 }
 
 .tool-grid {

@@ -26,7 +26,7 @@
   position: relative;
   height: 80px;
   width: 80px;
-  transition: height, width 0.3s ease;
+  transition: height, width, transform 0.3s ease;
 }
 
 .icon-group img:hover {

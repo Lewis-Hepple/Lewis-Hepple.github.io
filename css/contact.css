@@ -52,6 +52,12 @@ input:-internal-autofill-selected,
     background-color: var(--background-color);
 }
 
+.contact-form button:hover {
+    border: var(--text-color) solid 2.2px;
+    color: var(--background-color);
+    background-color: var(--text-color);
+}
+
 @media screen and (max-width: 760px) {
     .contact-grid {
         display: grid;

@@ -118,6 +118,11 @@ body {
     background-color: var(--background-color);
 }
 
+.theme-toggle:hover {
+    color: var(--background-color);
+    background-color: var(--text-color);
+}
+
 /* -----------  NavBar ---------------- */
 .navbar {
     display: grid;

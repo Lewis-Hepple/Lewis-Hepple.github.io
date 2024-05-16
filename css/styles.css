@@ -296,6 +296,7 @@ figure {
         grid-column: 1 / -1;
         text-align: left;
         width: 100%;
+        z-index: 15;
     }
 
     .nav-links {
@@ -303,12 +304,14 @@ figure {
         flex-direction: column-reverse;
         width: 40vw;
         background: var(--background-color);
+        border-radius: 0 0 3 3;
         position: absolute;
         top: 4rem;
         left: 0;
     }
 
     .nav-links.active {
+        position: fixed;
         display: flex;
     }
 

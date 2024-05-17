@@ -138,7 +138,7 @@ document.addEventListener("DOMContentLoaded", function() {
         //* 
         //* -------  Typing Effect on Landing Page -------------- 
         //*
-        if ('/index.html' === window.location.pathname) {
+        if (['/', '/index.html'].contains(window.location.pathname)) {
             // Get Text from file and parse
             fetch('files/coding.txt')
                 .then(

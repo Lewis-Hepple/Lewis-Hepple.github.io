@@ -1,4 +1,4 @@
-/* -----------  Generic Text + Containers ---------------- */
+/* -------- Color Themes ----------- */
 :root {
 --background-color: #27768b;
 --background-color2: #f4f4f4;
@@ -36,7 +36,7 @@ body.dark-theme3 {
 }
 
 
-
+/* -----------  Generic Text + Containers ---------------- */
 body {
     background-color: var(--background-color);
     margin: 0;

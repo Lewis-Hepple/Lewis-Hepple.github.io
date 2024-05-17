@@ -1,23 +1,6 @@
 //---------- Logo Hovers ------
 document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.icon-group img, .work-icon-group img').forEach(img => {
-        img.addEventListener('mouseover', () => {
-            console.log("mousover");
-            const tooltip = document.createElement('div');
-            tooltip.className = 'tooltip';
-            tooltip.innerText = img.getAttribute('data-label');
-            document.body.appendChild(tooltip);
 
-            const rect = img.getBoundingClientRect();
-            tooltip.style.left = `${rect.left + window.scrollX + img.clientWidth / 2 - tooltip.clientWidth / 2}px`;
-            tooltip.style.top = `${rect.top + window.scrollY - tooltip.clientHeight - 10}px`;
-        });
-
-        img.addEventListener('mouseout', () => {
-            console.log("removed")
-            document.querySelector('.tooltip').remove();
-        });
-    });
 });
 
 // ---------- Nav Menu -----------------
@@ -27,10 +10,11 @@ function toggleMenu() {
     navLinks.classList.toggle('active');
 }
 
+
 // ----------- Theme Toggle Button ------------------------
 function toggleTheme() {
     var body = document.body;
-    // Save the theme preference
+    // Save the theme preference and cycle on click
     if (body.classList.contains('dark-theme1')) {
         body.classList.remove('dark-theme1');
         body.classList.add("dark-theme2")
@@ -48,8 +32,10 @@ function toggleTheme() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-
+document.addEventListener("DOMContentLoaded", function() {
+    //
+    // ------------ Load Saved Theme ---------------
+    //
     var savedTheme = localStorage.getItem('theme');
     if (savedTheme === "1") {
         document.body.classList.add('dark-theme1');
@@ -58,184 +44,161 @@ document.addEventListener('DOMContentLoaded', function() {
     } else if (savedTheme === "3") {
         document.body.classList.add('dark-theme3');
     }
-});
 
-
-
-
-// ----------  Contact Me From ---------------------
-
-document.addEventListener('DOMContentLoaded', function() {
-    if (window.location.pathname === '/contact.html') {
-        document.getElementById('emailForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            var name = document.getElementById('name').value;
-            var subject = document.getElementById('subject').value;
-            var body = document.getElementById('body').value;
-            var mailto_link = 'mailto:thelewishepple@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-
-            window.location.href = mailto_link; 
+    //
+    // ----------------- Logo Tooltip Hovers -------------
+    //
+    document.querySelectorAll('.icon-group img, .work-icon-group img').forEach(img => {
+        img.addEventListener('mouseover', () => {
+            // Get tooltip content
+            const tooltip = document.createElement('div');
+            tooltip.className = 'tooltip';
+            tooltip.innerText = img.getAttribute('data-label');
+            document.body.appendChild(tooltip);
+            // get tooltip location
+            const rect = img.getBoundingClientRect();
+            tooltip.style.left = `${rect.left + window.scrollX + img.clientWidth / 2 - tooltip.clientWidth / 2}px`;
+            tooltip.style.top = `${rect.top + window.scrollY - tooltip.clientHeight - 10}px`;
         });
-    }
-});
+
+        img.addEventListener('mouseout', () => {
+            document.querySelector('.tooltip').remove();
+        });
+    });
 
 
+    window.addEventListener("load", function() {
+        //
+        // ---------- Contact Me Form --------------------
+        //
+        if (window.location.pathname === '/contact.html') {
+            document.getElementById('emailForm').addEventListener('submit', function(e) {
+                e.preventDefault();
 
-// --------  Work Fade In --------------
-window.addEventListener("load", function() {
-    if (window.location.pathname === '/work.html') {
-        const amazonImage = document.getElementById('amazonImage');
-        const amazonImage2 = document.getElementById('amazonImage2');
-        const amazonText = document.getElementById('amazonText');
-        const tallystoneImage = document.getElementById('tallystoneImage');
-        const tallystoneImage2 = document.getElementById('tallystoneImage2');
-        const tallystoneText = document.getElementById('tallystoneText');
+                var name = document.getElementById('name').value;
+                var subject = document.getElementById('subject').value;
+                var body = document.getElementById('body').value;
+                var mailto_link = 'mailto:thelewishepple@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
 
-        function revealOnScroll() {
-            var windowHeight = window.innerHeight / 1.5 + window.scrollY;
-            var elementTopAmazon = $('#amazonImage').offset().top;
-            var elementTopTallystone = $('#tallystoneImage').offset().top;
-
-            if (elementTopAmazon < windowHeight) { 
-                amazonImage.classList.add('visible');
-                amazonImage2.classList.add('visible');
-                amazonText.classList.add('visible');
-            } else if (elementTopAmazon > windowHeight + 200) {
-                amazonImage.classList.remove('visible');
-                amazonImage2.classList.remove('visible');
-                amazonText.classList.remove('visible');
-            }
-
-            if (elementTopTallystone < windowHeight) {
-                tallystoneImage.classList.add('visible');
-                tallystoneImage2.classList.add('visible');
-                tallystoneText.classList.add('visible');
-            } else if (elementTopTallystone > windowHeight + 200) {
-                tallystoneImage.classList.remove('visible');
-                tallystoneImage2.classList.remove('visible');
-                tallystoneText.classList.remove('visible');
-            }
+                window.location.href = mailto_link; 
+            });
         }
-        
 
-        function handleResize() {
+
+        // 
+        // --------  Work Fade In --------------
+        //
+        if (window.location.pathname === '/work.html') {
+            const amazonImage = document.getElementById('amazonImage');
+            const amazonImage2 = document.getElementById('amazonImage2');
+            const amazonText = document.getElementById('amazonText');
+            const tallystoneImage = document.getElementById('tallystoneImage');
+            const tallystoneImage2 = document.getElementById('tallystoneImage2');
+            const tallystoneText = document.getElementById('tallystoneText');
+
+            function revealOnScroll() {
+                // Get current heights + offsets 
+                var windowHeight = window.innerHeight / 1.5 + window.scrollY;
+                var elementTopAmazon = $('#amazonImage').offset().top;
+                var elementTopTallystone = $('#tallystoneImage').offset().top;
+
+                // Animate divs to enter screen at correct heights
+                if (elementTopAmazon < windowHeight) { 
+                    amazonImage.classList.add('visible');
+                    amazonImage2.classList.add('visible');
+                    amazonText.classList.add('visible');
+                } else if (elementTopAmazon > windowHeight + 200) {
+                    amazonImage.classList.remove('visible');
+                    amazonImage2.classList.remove('visible');
+                    amazonText.classList.remove('visible');
+                }
+
+                if (elementTopTallystone < windowHeight) {
+                    tallystoneImage.classList.add('visible');
+                    tallystoneImage2.classList.add('visible');
+                    tallystoneText.classList.add('visible');
+                } else if (elementTopTallystone > windowHeight + 200) {
+                    tallystoneImage.classList.remove('visible');
+                    tallystoneImage2.classList.remove('visible');
+                    tallystoneText.classList.remove('visible');
+                }
+            }
+            
+            function handleResize() {
+                revealOnScroll();
+            }
+
+            window.addEventListener('scroll', revealOnScroll);
+            window.addEventListener('resize', handleResize);
             revealOnScroll();
         }
 
-        window.addEventListener('scroll', revealOnScroll);
-        window.addEventListener('resize', handleResize);
-
-        revealOnScroll();
-    }
-});
 
 
-//* -------  Typing Effect on Landing Page -------------- */
+        //* 
+        //* -------  Typing Effect on Landing Page -------------- 
+        //*
+        if ('/index.html' === window.location.pathname) {
+            // Get Text from file and parse
+            fetch('files/coding.txt')
+                .then(
+                    response => response.ok ? response.text() : Promise.reject(response.statusText))
+                .then(
+                    data => data.split('\\EOF').forEach(
+                    (fileContent, index) => startTypingEffect(fileContent.split('\n'), index)))
+                .catch(
+                    error => console.error('Error fetching background text:', error));
 
-document.addEventListener("DOMContentLoaded", function() {
-    if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
-        fetch('files/coding.txt')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok ' + response.statusText);
+            function startTypingEffect(lines, iter) {
+                let [lineIndex, charIndex, currentTransform] = [0, 0, 0];
+                const doco = document.getElementById(`typewriter${iter}`);
+                const parentHeight = parseFloat(getComputedStyle(doco.parentElement).height);
+                const lineHeight = parseFloat(getComputedStyle(doco).lineHeight) + parseFloat(getComputedStyle(doco).marginBlockEnd) + parseFloat(getComputedStyle(doco).marginBlockStart);
+
+                function typeWriter() {
+                    // If we have reached EOF of our text then scroll back to top, and remove all our text,
+                    // Otherwise we either add a char to end of our <p> or
+                    // or we create a newline and check if we have reached bottom of our section, scroll if needed
+                    if (lineIndex < lines.length) {
+                        if (charIndex < lines[lineIndex].length) {
+                            doco.innerHTML += lines[lineIndex][charIndex++];
+                            setTimeout(typeWriter, randomInt(6, 20));
+                        } else {
+                            doco.innerHTML += '<p style="margin:0">';
+                            charIndex = 0;
+                            lineIndex++;
+                            scrollToBottom();
+                            setTimeout(typeWriter, randomInt(4, 20));
+                        }
+                    } else {
+                        [lineIndex, charIndex] = [0, 0];
+                        doco.innerHTML = '';
+                        scrollToTop();
+                        setTimeout(typeWriter, randomInt(6, 20));
+                    }
                 }
-                return response.text();
-            })
-            .then(data => {
-                const files = data.split('\\EOF');
-                files.forEach((fileContent, index) => {
-                    startTypingEffect(fileContent.split('\n'), index);
-                });
-            })
-            .catch(error => {
-                console.error('There has been an error fetching your background text', error);
-            });
-    }
 
-    function startTypingEffect(lines, iter) {
-        let lineIndex = 0;
-        let charIndex = 0;
-        let doco;
-        let currentTransform = 0;
-        switch (iter) {
-            case 0:
-                doco = document.getElementById("typewriter0");
-                break;
-            case 1:
-                doco = document.getElementById("typewriter1");
-                break;
-            case 2:
-                doco = document.getElementById("typewriter2");
-                break;
-            case 3:
-                doco = document.getElementById("typewriter3");
-                break;
-            case 4:
-                doco = document.getElementById("typewriter4");
-                break;
-            case 5:
-                doco = document.getElementById("typewriter5");
-                break;
-            default:
-                console.warn(`No typewriter element found for iter ${iter}`);
-                return;
-        }
-
-        let parentHeight = parseFloat(getComputedStyle(doco.parentElement).height);
-        const lineHeight = parseFloat(getComputedStyle(doco).lineHeight) + parseFloat(getComputedStyle(doco).marginBlockEnd) + parseFloat(getComputedStyle(doco).marginBlockStart) + parseFloat(getComputedStyle(doco).marginBlockEnd);
-
-        function typeWriter() {
-            if (lineIndex < lines.length) {
-                if (charIndex < lines[lineIndex].length) {
-                    doco.innerHTML += lines[lineIndex].charAt(charIndex);
-                    charIndex++;
-                    setTimeout(typeWriter, randomInt(6,20));
-                } else {
-                    doco.innerHTML += '<p style="margin-block-end:0; margin-block-start:0">';
-                    charIndex = 0;
-                    lineIndex++;
-                    scrollToBottom();
-                    setTimeout(typeWriter, randomInt(4,20));
+                function scrollToTop() {
+                    currentTransform = 0;
+                    doco.style.transform = `translateY(${currentTransform}px)`;
                 }
-            } else {
-                lineIndex = 0;
-                charIndex = 0;
-                doco.innerHTML = '';
-                scrollToTop();
-                setTimeout(typeWriter, randomInt(6,20));
+
+                function scrollToBottom() {
+                    const currentHeight = lineHeight * lineIndex;
+                    if (currentHeight > parentHeight - lineHeight) {
+                        currentTransform -= lineHeight;
+                        doco.style.transform = `translateY(${currentTransform}px)`;
+                    }
+                }
+
+                function randomInt(min, max) {
+                    // 1/169 chance to do a long pause between 200-300ms. otherwise do a short pause based on bounds
+                    return Math.random() < 1 / 169 ? Math.floor(Math.random() * 100) + 200 : Math.floor(Math.random() * (max - min + 1)) + min;
+                }
+                // Resize our divs for correct scrolling if window size changes (only works when making it bigger)
+                window.addEventListener('resize', () => parentHeight = parseFloat(getComputedStyle(doco.parentElement).height));
+                typeWriter();
             }
         }
-
-        function scrollToTop() {
-            currentTransform = 0;
-            doco.style.transform = `translateY(${currentTransform}px)`;
-        }
-
-        function scrollToBottom() {
-            let currentHeight = lineHeight * lineIndex;
-            if (currentHeight > parentHeight - lineHeight) {
-                currentTransform -= lineHeight; // Adjust this value to sync with typing speed
-                doco.style.transform = `translateY(${currentTransform}px)`;
-            }
-        }
-
-        function randomInt(min, max) {
-            // 1 in 169 chance to do a longer pause to simulate thinking
-            if (Math.floor(Math.random() * 169) >= 168) {
-                return Math.floor(Math.random() * 100) + 200;
-            }
-            // random number between max and min
-            return Math.floor(Math.random() * (max - min + 1)) + min;
-        }
-
-        function handleResize() {
-            parentHeight = parseFloat(getComputedStyle(doco.parentElement).height);
-        }
-
-        window.addEventListener('resize', handleResize);
-        typeWriter();
-    }
+    });
 });
-
-

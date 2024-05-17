@@ -1,0 +1,31 @@
+# My Resume Website
+
+Welcome to my personal resume website! This project showcases my professional experience, skills, and projects. The website is designed to provide a comprehensive overview of my qualifications and accomplishments.
+
+## Features
+
+- **Interactive Resume**: Detailed sections for education, experience, skills, and projects.
+- **Dynamic Content**: Interactive elements such as tooltips, fading images, and typing effects.
+- **Responsive Design**: Optimized for both desktop and mobile devices.
+- **Theme Toggle**: Multiple themes for user preference.
+- **Contact Form**: Simple and effective way to reach out via email.
+
+## Technologies Used
+
+- **HTML5**: Structuring the website content.
+- **CSS3**: Styling the website with custom themes and responsive design.
+- **JavaScript**: Adding interactivity and dynamic content.
+- **jQuery**: Simplifying DOM manipulation and event handling.
+- **Local Storage**: Saving user preferences like theme selection.
+- **Fetch API**: Loading external resources like text files for the typing effect.
+
+## Usage
+
+- **Homepage**: Features an animated typing effect that cycles through various texts and interesting coding snippets.
+- **Resume Section**: Includes detailed information about education, work experience, skills, and projects.
+- **Theme Toggle**: Click the theme toggle button to switch between different dark themes.
+- **Contact Page**: Use the contact form to send an email directly from the website.
+
+## **Contact**
+
+Feel free to reach out if you have any questions or comments!

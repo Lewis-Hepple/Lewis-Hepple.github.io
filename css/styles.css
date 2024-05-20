@@ -17,16 +17,6 @@ body.dark-theme1 {
 }
 
 body.dark-theme2 {
-    --background-color2: #697184;
-    --background-color: #D8CFD0;
-    --text-color: #413F3D;
-    --text-color2: #F2F1EF;
-    --link-color: #B1A6A4;
-    --object-color: #697184;
-
-}
-
-body.dark-theme3 {
     --background-color2: #FAF6F2;
     --background-color: #DED1BD;
     --text-color: #683B2B;

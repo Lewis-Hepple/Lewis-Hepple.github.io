@@ -21,10 +21,6 @@ function toggleTheme() {
         localStorage.setItem('theme', "2");
     } else if (body.classList.contains('dark-theme2')) {
         body.classList.remove('dark-theme2');
-        body.classList.add("dark-theme3")
-        localStorage.setItem('theme', "3");
-    } else if (body.classList.contains('dark-theme3')) {
-        body.classList.remove('dark-theme3');
         localStorage.setItem('theme', "0");
     } else {
         body.classList.add("dark-theme1")
@@ -41,8 +37,6 @@ document.addEventListener("DOMContentLoaded", function() {
         document.body.classList.add('dark-theme1');
     } else if (savedTheme === "2") {
         document.body.classList.add('dark-theme2');
-    } else if (savedTheme === "3") {
-        document.body.classList.add('dark-theme3');
     }
 
     //

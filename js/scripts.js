@@ -138,31 +138,28 @@ document.addEventListener("DOMContentLoaded", function() {
         //* 
         //* -------  Typing Effect on Landing Page -------------- 
         //*
-        if (('/' === window.location.pathname) || ('/index.html' === window.location.pathname)) {
-            // Get Text from file and parse
+       //* -------  Typing Effect on Landing Page --------------
+        if (['/', '/index.html'].includes(window.location.pathname)) {
             fetch('files/coding.txt')
-                .then(
-                    response => response.ok ? response.text() : Promise.reject(response.statusText))
-                .then(
-                    data => data.split('\\EOF').forEach(
-                    (fileContent, index) => startTypingEffect(fileContent.split('\n'), index)))
-                .catch(
-                    error => console.error('Error fetching background text:', error));
+                .then(response => response.ok ? response.text() : Promise.reject(response.statusText))
+                .then(data => {
+                    data.split('\\EOF').forEach((fileContent, index) => startTypingEffect(fileContent.split('\n'), index));
+                })
+                .catch(error => console.error('Error fetching background text:', error));
 
             function startTypingEffect(lines, iter) {
                 let [lineIndex, charIndex, currentTransform] = [0, 0, 0];
                 const doco = document.getElementById(`typewriter${iter}`);
-                const parentHeight = parseFloat(getComputedStyle(doco.parentElement).height);
+                let parentHeight = parseFloat(getComputedStyle(doco.parentElement).height);
                 const lineHeight = parseFloat(getComputedStyle(doco).lineHeight) + parseFloat(getComputedStyle(doco).marginBlockEnd) + parseFloat(getComputedStyle(doco).marginBlockStart);
-
                 function typeWriter() {
-                    // If we have reached EOF of our text then scroll back to top, and remove all our text,
-                    // Otherwise we either add a char to end of our <p> or
-                    // or we create a newline and check if we have reached bottom of our section, scroll if needed
                     if (lineIndex < lines.length) {
                         if (charIndex < lines[lineIndex].length) {
+                            
                             doco.innerHTML += lines[lineIndex][charIndex++];
+                            textChunk = '';
                             setTimeout(typeWriter, randomInt(6, 20));
+                
                         } else {
                             doco.innerHTML += '<p style="margin:0">';
                             charIndex = 0;
@@ -171,7 +168,8 @@ document.addEventListener("DOMContentLoaded", function() {
                             setTimeout(typeWriter, randomInt(4, 20));
                         }
                     } else {
-                        [lineIndex, charIndex] = [0, 0];
+                        lineIndex = 0;
+                        charIndex = 0;
                         doco.innerHTML = '';
                         scrollToTop();
                         setTimeout(typeWriter, randomInt(6, 20));
@@ -192,13 +190,15 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
 
                 function randomInt(min, max) {
-                    // 1/169 chance to do a long pause between 200-300ms. otherwise do a short pause based on bounds
                     return Math.random() < 1 / 169 ? Math.floor(Math.random() * 100) + 200 : Math.floor(Math.random() * (max - min + 1)) + min;
                 }
-                // Resize our divs for correct scrolling if window size changes (only works when making it bigger)
-                window.addEventListener('resize', () => parentHeight = parseFloat(getComputedStyle(doco.parentElement).height));
+
+                window.addEventListener('resize', () => {
+                    parentHeight = parseFloat(getComputedStyle(doco.parentElement).height);
+                });
+
                 typeWriter();
             }
         }
-    });
+    })
 });

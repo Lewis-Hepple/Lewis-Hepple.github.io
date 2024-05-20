@@ -14,7 +14,7 @@ function toggleMenu() {
 // ----------- Theme Toggle Button ------------------------
 function toggleTheme() {
     var body = document.body;
-    // Save the theme preference and cycle on click
+    // Save the theme preference and cycle themes on click
     if (body.classList.contains('dark-theme1')) {
         body.classList.remove('dark-theme1');
         body.classList.add("dark-theme2")
@@ -30,7 +30,7 @@ function toggleTheme() {
 
 document.addEventListener("DOMContentLoaded", function() {
     //
-    // ------------ Load Saved Theme ---------------
+    // ------------ Load Saved Theme from Browser Storage ---------------
     //
     var savedTheme = localStorage.getItem('theme');
     if (savedTheme === "1") {
@@ -44,11 +44,13 @@ document.addEventListener("DOMContentLoaded", function() {
     //
     document.querySelectorAll('.icon-group img, .work-icon-group img').forEach(img => {
         img.addEventListener('mouseover', () => {
+            
             // Get tooltip content
             const tooltip = document.createElement('div');
             tooltip.className = 'tooltip';
             tooltip.innerText = img.getAttribute('data-label');
             document.body.appendChild(tooltip);
+
             // get tooltip location
             const rect = img.getBoundingClientRect();
             tooltip.style.left = `${rect.left + window.scrollX + img.clientWidth / 2 - tooltip.clientWidth / 2}px`;
@@ -132,26 +134,35 @@ document.addEventListener("DOMContentLoaded", function() {
         //* 
         //* -------  Typing Effect on Landing Page -------------- 
         //*
-       //* -------  Typing Effect on Landing Page --------------
         if (['/', '/index.html'].includes(window.location.pathname)) {
+
+            // Get Text from file and parse
             fetch('files/coding.txt')
-                .then(response => response.ok ? response.text() : Promise.reject(response.statusText))
-                .then(data => {
-                    data.split('\\EOF').forEach((fileContent, index) => startTypingEffect(fileContent.split('\n'), index));
+                .then(
+                    response => 
+                        response.ok ? response.text() : Promise.reject(response.statusText))
+                .then(
+                    data => {
+                        data.split('\\EOF').forEach(
+                        (fileContent, index) => startTypingEffect(fileContent.split('\n'), index));
                 })
-                .catch(error => console.error('Error fetching background text:', error));
+                .catch(
+                    error => 
+                        console.error('Error fetching background text:', error));
 
             function startTypingEffect(lines, iter) {
                 let [lineIndex, charIndex, currentTransform] = [0, 0, 0];
                 const doco = document.getElementById(`typewriter${iter}`);
                 let parentHeight = parseFloat(getComputedStyle(doco.parentElement).height);
                 const lineHeight = parseFloat(getComputedStyle(doco).lineHeight) + parseFloat(getComputedStyle(doco).marginBlockEnd) + parseFloat(getComputedStyle(doco).marginBlockStart);
+
+                 // If we have reached EOF of our text then scroll back to top, and remove all our text,
+                // Otherwise we either add a char to end of our <p> or
+                // or we create a newline and check if we have reached bottom of our section, scroll if needed
                 function typeWriter() {
                     if (lineIndex < lines.length) {
                         if (charIndex < lines[lineIndex].length) {
-                            
                             doco.innerHTML += lines[lineIndex][charIndex++];
-                            textChunk = '';
                             setTimeout(typeWriter, randomInt(6, 20));
                 
                         } else {
@@ -183,10 +194,12 @@ document.addEventListener("DOMContentLoaded", function() {
                     }
                 }
 
+                // 1/169 chance to do a long pause between 200-300ms. otherwise do a short pause based on bounds
                 function randomInt(min, max) {
                     return Math.random() < 1 / 169 ? Math.floor(Math.random() * 100) + 200 : Math.floor(Math.random() * (max - min + 1)) + min;
                 }
 
+                // Resize our divs for correct scrolling if window size changes (only works when making it bigger)
                 window.addEventListener('resize', () => {
                     parentHeight = parseFloat(getComputedStyle(doco.parentElement).height);
                 });
